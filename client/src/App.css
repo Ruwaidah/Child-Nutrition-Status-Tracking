@@ -1,0 +1,291 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+a {
+  text-decoration: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+.header {
+  font-size: 25px;
+}
+
+/* Error */
+
+.error {
+  font-size: 19px;
+  color: rgb(199, 80, 80);
+  text-align: start;
+  width: 60%;
+}
+.active {
+  color: red;
+  /* background: rgba(34, 34, 34, 0.96); */
+}
+/* .nav {
+  display: flex;
+} */
+
+/* Login */
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.loginDiv {
+  height: 500px;
+  background: #222222;
+  min-width: 50%;
+  margin: 100px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: #222222 10px 5px 50px;
+}
+
+.loginDiv h3 {
+  font-size: 40px;
+  color: wheat;
+}
+
+.loginDiv form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginDiv form div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.loginDiv form div .line {
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  align-items: center;
+}
+.loginDiv form div input {
+  border: none;
+  border-radius: 5px;
+  height: 50px;
+  padding-left: 10px;
+  width: 50%;
+  font-size: 25px;
+}
+.loginDiv form div label {
+  text-align: end;
+  width: 18%;
+  font-size: 25px;
+  margin-right: 15px;
+  color: wheat;
+}
+.loginDiv .forgot {
+  color: wheat;
+}
+
+.loginDiv .forgot a {
+  color: rgb(199, 80, 80);
+  font-size: 17px;
+}
+.loginDiv form button {
+  font-size: 25px;
+  width: 200px;
+  border: white;
+  padding: 10px;
+  border-radius: 10px;
+  color: wheat;
+  background: #222222;
+}
+
+.loginDiv form button:hover {
+  background: wheat;
+  color: #222222;
+}
+
+.countries {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.countries .countriesList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.countries .addcountry {
+  margin: 30px auto;
+  width: 100%;
+  text-align: center;
+}
+.countries a {
+  min-width: 20%;
+  font-size: 25px;
+  text-decoration: none;
+  color: wheat;
+  background: #222222;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 5px;
+}
+.countries .country {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.countries .country a {
+  text-align: center;
+  width: 20%;
+}
+a:hover {
+  color: red;
+}
+
+.usersList {
+  display: flex;
+  flex-wrap: wrap;
+}
+.list-div {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 50px;
+  color: white;
+}
+.alllist {
+  background: #222222;
+  border-radius: 5px;
+  max-width: 450px;
+  margin: 30px auto;
+  margin-right: 20px;
+  display: flex;
+  padding: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 450px;
+}
+
+.field {
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 30px;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.field p {
+  width: 50%;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  color: wheat;
+}
+
+.field h5 {
+  text-align: end;
+  font-size: 20px;
+  width: 25%;
+  margin: 0;
+  margin-right: 40px;
+}
+
+.form-div {
+  background: #282c34;
+}
+
+/* Create User */
+
+/* .createUser {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+} */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.editeForm {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background: rgba(34, 34, 34, 0.96);
+  position: fixed;
+  top: 150px;
+  left: 30%;
+  z-index: 1;
+  animation: fadeIn 1s;
+  width: 40%;
+  border-radius: 10px;
+  padding: 30px 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* align-items: center; */
+  border: black 1px solid;
+}
+
+.editeForm input,
+#editeForm label {
+  font-size: 1.9rem;
+}
+
+.editeForm label {
+  font-size: 25px;
+  width: 20%;
+  color: wheat;
+  text-align: end;
+  margin-right: 10px;
+}
+
+.editeForm input {
+  font-size: 1.5rem;
+  width: 60%;
+  margin-bottom: 20px;
+}
+
+/* Countries */
