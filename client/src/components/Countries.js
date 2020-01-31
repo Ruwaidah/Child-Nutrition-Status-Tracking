@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { createCountry } from "../actions";
+import { allCountries } from "../actions";
 function Countries(props) {
+  console.log(props.countries);
   useEffect(() => {
-    props.createCountry();
-    props.history.push(`/${props.username}`);
+    props.allCountries();
+    // props.history.push(`/${sessionStorage.getItem("username")}`);
   }, []);
 
   if (!props.countries || props.countries.length == 0)
@@ -23,10 +24,10 @@ function Countries(props) {
         {props.countries.map((country, index) => (
           <Link
             className="country"
-            to={`/${country.country}/addmincommunities/${index}`}
+            to={`/${country.country_name}/${country.id}/communities`}
             key={index}
           >
-            {country.country}
+            {country.country_name}
           </Link>
         ))}
       </div>
@@ -35,10 +36,11 @@ function Countries(props) {
 }
 
 const mapStateToProps = state => {
+  console.log(state.data);
   return {
     username: state.user,
     countries: state.data
   };
 };
 
-export default connect(mapStateToProps, { createCountry })(Countries);
+export default connect(mapStateToProps, { allCountries })(Countries);

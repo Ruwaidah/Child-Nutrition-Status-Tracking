@@ -4,6 +4,7 @@ exports.up = function(knex) {
     tbl.string("childName", 100).notNullable();
     tbl.string("gender", 100).notNullable();
     tbl.date("birth", 100).notNullable();
+    tbl.date("screenDate", 100).notNullable();
     tbl.integer("weight", 100).notNullable();
     tbl.integer("height", 100).notNullable();
     tbl.string("parentName", 100).notNullable();

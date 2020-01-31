@@ -6,6 +6,7 @@ const isAuthenticated = () => {
 };
 
 export default function PrivateRoute({ children, ...rest }) {
+  console.log(sessionStorage.getItem("token"));
   return (
     <Route
       {...rest}

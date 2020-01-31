@@ -6,15 +6,14 @@ import Communities from "./Communities";
 import Countries from "./Countries";
 
 function Menu(props) {
+  console.log(props.loading);
   useEffect(() => {
-    if (sessionStorage.getItem("token")) {
-      props.userInfo(props.username);
-    }
+    props.userInfo(sessionStorage.getItem("userId"));
   }, []);
-  if (!props.userAllInfo) return <p>Loading</p>;
+  if (props.loading) return <p>Loading</p>;
   return (
     <div>
-      {props.userAllInfo.usertype ? (
+      {props.user.isAdmin ? (
         <div>
           <Countries history={props.history} />
         </div>
@@ -27,8 +26,8 @@ function Menu(props) {
 
 const mapStatetoProps = state => {
   return {
-    username: state.user,
-    userAllInfo: state.userInfo
+    loading: state.isloading,
+    user: state.user
   };
 };
 

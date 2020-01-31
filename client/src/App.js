@@ -38,11 +38,14 @@ function App(props) {
           path="/:country/communities/createacommunity"
           component={CreateACommunity}
         />
-        <Route path="/:country/addmincommunities/:id" component={Communities} />
+        <Route
+          path="/:country/:countryid/communities"
+          component={Communities}
+        />
         <Route path="/:country/communities" component={Communities} />
         <Route
           exact
-          path="/:country/:community/:id/children"
+          path="/:countryid/:communityid/children"
           component={Children}
         />
         <Route
@@ -52,7 +55,7 @@ function App(props) {
         />
       </PrivateRoute>
 
-      <Route exact path="/" component={LogInForm} />
+      <Route exact path="/" render={props => <LogInForm {...props} />} />
     </div>
   );
 }

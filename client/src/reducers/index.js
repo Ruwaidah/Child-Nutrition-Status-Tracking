@@ -8,6 +8,7 @@ import {
   COUNTRY_INFO_LOADING,
   COUNTRY_INFO_FETCH,
   COUNTRY_INFO_FAILED,
+  COUNTRIES_INFO_LOADING,
   COUNTRIES_INFO_FETCH,
   COUNTRIES_INFO_FAILED,
   USERS_INFO_FETCH,
@@ -36,8 +37,7 @@ export const rootReducer = (state = initiallstate, actions) => {
       };
 
     case LOGIN_FETCH:
-      sessionStorage.setItem("token", actions.payload.token.payload);
-
+      sessionStorage.setItem("userId", actions.payload.user.id);
       return {
         ...state,
         user: actions.payload.user,
@@ -63,7 +63,7 @@ export const rootReducer = (state = initiallstate, actions) => {
     case USER_INFO_FETCH:
       return {
         ...state,
-        userInfo: actions.payload,
+        user: actions.payload.user,
         isloading: false,
         error: null
       };
@@ -83,6 +83,7 @@ export const rootReducer = (state = initiallstate, actions) => {
     //     error: null
     //   };
     case COUNTRY_INFO_FETCH:
+      console.log(actions.payload);
       return {
         ...state,
         data: actions.payload,
@@ -96,9 +97,15 @@ export const rootReducer = (state = initiallstate, actions) => {
         error: "NO COMMUNITE FOUND"
       };
 
-    // Countries Fetch
+    // // Countries Fetch
+    case COUNTRIES_INFO_LOADING:
+      return {
+        isloading: true,
+        error: null
+      };
 
     case COUNTRIES_INFO_FETCH:
+      console.log(actions.payload);
       return {
         ...state,
         data: actions.payload,

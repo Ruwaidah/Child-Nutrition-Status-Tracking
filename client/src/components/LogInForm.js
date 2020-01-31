@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { logInaction, userInfo } from "../actions";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { stat } from "fs";
 
 function LogInForm(props) {
@@ -11,10 +11,10 @@ function LogInForm(props) {
   });
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
-      props.userInfo(props.username);
-      props.history.push(`/${props.username}`);
+      props.userInfo(sessionStorage.getItem("userId"));
+      // props.history.push(`/${sessionStorage.getItem("username")}`);
     }
-  }, [sessionStorage.getItem("token")]);
+  }, []);
 
   const onchange = event => {
     setValues({
@@ -25,12 +25,15 @@ function LogInForm(props) {
 
   const onLogin = event => {
     event.preventDefault();
-    props.logInaction(values);
+    props.logInaction(values, props.history);
+    // history.push("/test");
   };
 
   return (
     <div className="container">
-      {" "}
+      {sessionStorage.getItem("token") ? (
+        <Redirect to={`/${sessionStorage.getItem("username")}`} />
+      ) : null}{" "}
       <div className="loginDiv">
         <h3>Login Please</h3>
         {props.error ? <p className="error">{props.error}</p> : null}
@@ -67,7 +70,7 @@ function LogInForm(props) {
 }
 const mapStatetoProps = state => {
   return {
-    username: state.user,
+    user: state.user,
     error: state.error
   };
 };

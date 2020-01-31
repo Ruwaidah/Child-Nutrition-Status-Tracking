@@ -5,7 +5,7 @@ const Users = require("../users/users-model.js");
 
 // Get All communities / Get Country By Id
 
-router.get("/:userid/countries/:countryid", checkAdmin, (req, res) => {
+router.get("/:userid/:countryid", checkAdmin, (req, res) => {
   communities
     .getCountryById(req.params.countryid)
     .then(allcommunities => {
