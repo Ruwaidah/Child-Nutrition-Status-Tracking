@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Child from "../pages/ChildView";
+import ChildView from "./ChildView";
+import { getRecords, userInfo } from "../actions/index.js"
+import color from "@material-ui/core/colors/amber";
 
 function Children(props) {
-  console.log(props.communities);
-  let children = props.communities[props.match.params.id].childs;
+  let community_id = props.match.params.communityid
+  useEffect(() => {
+    props.getRecords(
+      community_id
+    );
+    props.userInfo(sessionStorage.getItem("userId"));
 
-  if (props.userAllInfo.usertype)
-    children =
-      props.communities[props.match.params.countryid].communities[
-        props.match.params.id
-      ].childs;
+  }, []);
+  console.log(props.records);
 
-  if (!children) return <h1>Loading</h1>;
+  if (!props.records) return <h1>Loading</h1>;
 
   return (
     <div className="list-div">
@@ -27,17 +30,21 @@ function Children(props) {
       </button>
       <Link to={`/childRecord`}>add Child</Link>
       <h2>Children</h2>
-      {children.map(child => (
-        <Child child={child} />
-      ))}
-    </div>
+      {props.records.map(child =>
+        // <Child child={child} />
+        <div ><Link to={`record/${child.id}`}> {child.childName}</Link></div>
+
+
+      )}
+    </div >
   );
 }
 const mapStatetoProps = state => {
   return {
-    userinfo: state.user,
-    userAllInfo: state.userInfo,
-    communities: state.data
+    user: state.user,
+    isloading: state.isloading,
+    communities: state.communities,
+    records: state.records
   };
 };
-export default connect(mapStatetoProps, {})(Children);
+export default connect(mapStatetoProps, { getRecords, userInfo })(Children);

@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { getChildRecord, userInfo } from "../actions/index.js"
 
-export default function Child(props) {
-  console.log(props);
+
+function ChildView(props) {
+  const childId = props.match.params.childid
+  const comId = props.match.params.communityid
+  useEffect(() => {
+    props.getChildRecord(
+      comId, childId
+    );
+    props.userInfo(sessionStorage.getItem("userId"));
+
+  }, []);
+  console.log(props.child);
+  if (!props.child) return <h3>Loading</h3>
   return (
     <div className="alllist">
       <div className="field">
@@ -60,5 +72,16 @@ export default function Child(props) {
         <p></p>
       </div>
     </div>
-  );
+  )
 }
+
+
+
+const mapStatetoProps = state => {
+  return {
+    user: state.user,
+    isloading: state.isloading,
+    child: state.child
+  };
+};
+export default connect(mapStatetoProps, { userInfo, getChildRecord })(ChildView);

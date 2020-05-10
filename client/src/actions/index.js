@@ -135,3 +135,46 @@ export const deleteUser = (id, value) => dispatch => {
 export const cleaning = () => dispatch => {
   dispatch({ type: CLEANING_DATA });
 };
+
+
+
+
+
+
+// Children RECORDS
+export const RECORDS_START = "RECORDS_START";
+export const RECORDS_FETCH = "RECORDS_FETCH";
+export const RECORDS_FAILED = "RECORDS_FAILED";
+// User Information Fetch
+export const getRecords = id => dispatch => {
+  // dispatch({ type: RECORDS_START });
+  const authAxios = axiosWithAuth();
+  let user_id = sessionStorage.getItem("userid");
+  authAxios
+    .get(`http://localhost:5000/api/auth/childrens/${user_id}/${id}`)
+    .then(respo => {
+      console.log(respo)
+      dispatch({ type: RECORDS_FETCH, payload: respo.data });
+    })
+    .catch(respon => dispatch({ type: RECORDS_FAILED }));
+};
+
+
+
+// Child RECORD
+export const RECORD_START = "RECORD_START";
+export const RECORD_FETCH = "RECORD_FETCH";
+export const RECORD_FAILED = "RECORD_FAILED";
+// User Information Fetch
+export const getChildRecord = (communityid, childid) => dispatch => {
+  // dispatch({ type: RECORDS_START });
+  const authAxios = axiosWithAuth();
+  let user_id = sessionStorage.getItem("userid");
+  authAxios
+    .get(`http://localhost:5000/api/auth/childrens/${user_id}/${communityid}/${childid}`)
+    .then(respo => {
+      console.log(respo)
+      dispatch({ type: RECORD_FETCH, payload: respo.data });
+    })
+    .catch(respon => dispatch({ type: RECORD_FAILED }));
+};

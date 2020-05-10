@@ -9,6 +9,7 @@ router.get("/:userid/:countryid", checkAdmin, (req, res) => {
   communities
     .getCountryById(req.params.countryid)
     .then(allcommunities => {
+      console.log(allcommunities)
       res.status(200).json(allcommunities);
 
     })
@@ -23,6 +24,7 @@ function checkAdmin(req, res, next) {
           communities
             .getCountryById(user.country_id)
             .then(allcommunities => {
+              console.log(allcommunities)
               res.status(200).json(allcommunities);
             })
             .catch(error =>

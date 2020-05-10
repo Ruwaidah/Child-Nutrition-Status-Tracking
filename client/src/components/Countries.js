@@ -5,21 +5,11 @@ import { allCountries, userInfo } from "../actions";
 function Countries(props) {
   console.log(props.countries);
   useEffect(() => {
-    // props.userInfo(sessionStorage.getItem("userId"));
     props.allCountries();
-    console.log("dsnjoewewinaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    // props.history.push(`/${sessionStorage.getItem("username")}`);
   }, []);
 
-  // if (!props.countries || props.countries.length == 0)
-  //   return (
-  //     <div className="loading">
-  //       <h1>Loading...</h1>
-  //     </div>
-  //   );
   console.log(props.loading)
   if (!props.countries) {
-    console.log("loooooooading")
     return (
       <div className="loading">
         <h1>Loading...</h1>

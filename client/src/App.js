@@ -14,6 +14,7 @@ import LogInForm from "./components/LogInForm";
 import Menu from "./components/Menu";
 import AllUsers from "./components/AllUsers";
 import Countries from "./components/Countries";
+import ChildView from "./components/ChildView"
 
 import Header from "./components/Header";
 
@@ -32,8 +33,8 @@ function App(props) {
         <Route path="/createACountry" component={CreateACountry} />
         <Route path="/:username/users" component={AllUsers} />
         <Route exact path="/:username/admin" component={Countries} />
-        <Route path="/:username/user/:countryname/:country_id" component={Communities} />
-        <Route path="/:username/admin/:countryname/:country_id" component={Communities} />
+        <Route exact path="/:username/user/:countryname/:country_id" component={Communities} />
+        <Route exact path="/:username/admin/:countryname/:country_id" component={Communities} />
         <Route exact path="/:username" component={Menu} />
         <Route path="/childRecord" component={ChildRecordNewForm} />
         <Route path="/:username/users/createAUser" component={CreateAUser} />
@@ -41,11 +42,11 @@ function App(props) {
           path="/:country/communities/createacommunity"
           component={CreateACommunity}
         />
-        <Route
-          path="/:country/:countryid/communities"
+        {/* <Route
+          exact path="/:country/:countryid/communities"
           component={Communities}
         />
-        <Route path="/:country/communities" component={Communities} />
+        <Route exact path="/:country/communities" component={Communities} /> */}
         <Route
           exact
           path="/:countryid/:communityid/children"
@@ -53,8 +54,23 @@ function App(props) {
         />
         <Route
           exact
-          path="/:country/:countryid/:community/:id/children"
+          path="/:user/admin/:countryname/:country_id/communities/:community_name/:communityid/children"
           component={Children}
+        />
+        <Route
+          exact
+          path="/:user/user/:countryname/:country_id/communities/:community_name/:communityid/children"
+          component={Children}
+        />
+        <Route
+          exact
+          path="/:user/user/:countryname/:country_id/communities/:community_name/:communityid/record/:childid"
+          component={ChildView}
+        />
+        <Route
+          exact
+          path="/:user/admin/:countryname/:country_id/communities/:community_name/:communityid/record/:childid"
+          component={ChildView}
         />
       </PrivateRoute>
 

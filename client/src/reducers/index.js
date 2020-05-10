@@ -12,7 +12,13 @@ import {
   COUNTRIES_INFO_FETCH,
   COUNTRIES_INFO_FAILED,
   USERS_INFO_FETCH,
-  CLEANING_DATA
+  CLEANING_DATA,
+  RECORDS_START,
+  RECORDS_FETCH,
+  RECORDS_FAILED,
+  RECORD_START,
+  RECORD_FETCH,
+  RECORD_FAILED
 } from "../actions";
 
 const initiallstate = {
@@ -24,7 +30,9 @@ const initiallstate = {
   userInfo: "",
   countries: [],
   allusers: [],
-  communities: null
+  communities: null,
+  records: null,
+  child: null
 };
 
 export const rootReducer = (state = initiallstate, actions) => {
@@ -138,6 +146,53 @@ export const rootReducer = (state = initiallstate, actions) => {
     //   return {
     //     initiallstate
     //   };
+
+
+    // Records
+    case RECORDS_START:
+      return {
+        ...state,
+        isloading: true,
+        error: null
+      };
+
+    case RECORDS_FETCH:
+      return {
+        ...state,
+        records: actions.payload,
+        isloading: false,
+        error: null
+      };
+    case RECORDS_FAILED:
+      return {
+        records: null,
+        isloading: false,
+        error: "error loading user Info"
+      };
+
+
+
+    // CHILD RECORD
+    case RECORD_START:
+      return {
+        ...state,
+        isloading: true,
+        error: null
+      };
+
+    case RECORD_FETCH:
+      return {
+        ...state,
+        child: actions.payload,
+        isloading: false,
+        error: null
+      };
+    case RECORD_FAILED:
+      return {
+        child: null,
+        isloading: false,
+        error: "error loading user Info"
+      };
     default:
       return state;
   }

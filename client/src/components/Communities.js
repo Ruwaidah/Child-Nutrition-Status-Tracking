@@ -13,7 +13,7 @@ function Communities(props) {
 
   }, []);
 
-
+  console.log(props.user)
   if (!props.communities)
     return (
       <div className="loading">
@@ -24,27 +24,19 @@ function Communities(props) {
   return (
     <div>
       <button
-        onClick={event => {
-          event.preventDefault();
-          props.history.goBack();
-        }}
-      >
-        Back
-      </button>
-      <button
         onClick={() =>
           props.history.push(
             `/${props.match.params.country}/communities/createacommunity`
           )
         }
       >
-        CreateACommunity
+        add Community
       </button>
       <h2>Communities</h2>
 
       {props.communities.map((communitie, index) => (
         <Link
-          to={`/${props.match.params.countryid}/${communitie.communityid}/Children`}
+          to={`${communitie.country_id}/communities/${communitie.community_name}/${communitie.communityid}/Children`}
           key={index}
         >
           <h4>{communitie.community_name}</h4>
