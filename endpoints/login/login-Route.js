@@ -10,8 +10,10 @@ router.post("/", (req, res) => {
   const { username, password } = req.body;
   Users.findUser(username)
     .then(user => {
+      console.log(user)
       if (user) {
         if (bcrypt.compareSync(password, user.password)) {
+          console.log("ewfwefewfw")
           const token = generateToken(user);
           res.status(200).json({
             token,
@@ -22,7 +24,8 @@ router.post("/", (req, res) => {
               username: user.username,
               email: user.email,
               isAdmin: user.isAdmin,
-              country_id: user.country_id
+              country_id: user.country_id,
+              country_name: user.country_name
             }
           });
         } else {

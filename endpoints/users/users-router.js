@@ -16,7 +16,8 @@ router.get("/:id", (req, res) => {
           username: user.username,
           email: user.email,
           isAdmin: user.isAdmin,
-          country_id: user.country_id
+          country_id: user.country_id,
+          country_name: user.country_name
         }
       });
     })

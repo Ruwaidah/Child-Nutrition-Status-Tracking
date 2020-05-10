@@ -9,8 +9,8 @@ router.get("/:userid/:countryid", checkAdmin, (req, res) => {
   communities
     .getCountryById(req.params.countryid)
     .then(allcommunities => {
-      if (allcommunities) res.status(200).json(allcommunities);
-      else res.status(404).json("no communities");
+      res.status(200).json(allcommunities);
+
     })
     .catch(error => res.status(500).json({ message: "error getting data" }));
 });

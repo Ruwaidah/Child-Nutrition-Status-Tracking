@@ -4,20 +4,11 @@ export const LOGIN_LOADING = "LOGIN_LOADING";
 export const LOGIN_FETCH = "LOGIN_FETCH";
 export const LOGIN_FAILED = "LOGIN_FAILED";
 
-// User- Info
-export const USER_INFO_LOADING = "USER_INFO_LOADING";
-export const USER_INFO_FETCH = "USER_INFO_FETCH";
-export const USER_INFO_FAILED = "USER_INFO_FAILED";
 
-// One Country
-export const COUNTRY_INFO_LOADING = "COUNTRY_INFO_LOADING";
-export const COUNTRY_INFO_FETCH = "COUNTRY_INFO_FETCH";
-export const COUNTRY_INFO_FAILED = "COUNTRY_INFO_FAILED";
 
-// Countries-Info
-export const COUNTRIES_INFO_LOADING = "COUNTRIES_INFO_LOADING";
-export const COUNTRIES_INFO_FETCH = "COUNTRIES_INFO_FETCH";
-export const COUNTRIES_INFO_FAILED = "COUNTRIES_INFO_FAILED";
+
+
+
 
 // // UserS- Info
 // export const USERS_INFO_LOADING = "USERS_INFO_LOADING";
@@ -32,12 +23,8 @@ export const logInaction = (values, history) => dispatch => {
   dispatch({ type: LOGIN_LOADING });
   axios
     .post("http://localhost:5000/api/auth/login", values)
-    .then(res => {
-      sessionStorage.setItem("token", res.data.token);
-      sessionStorage.setItem("username", res.data.user.username);
-      sessionStorage.setItem("userid", res.data.user.id);
-      dispatch({ type: LOGIN_FETCH, payload: res.data });
-    })
+    .then(res => dispatch({ type: LOGIN_FETCH, payload: res.data })
+    )
     .catch(error => dispatch({ type: LOGIN_FAILED }));
 };
 
@@ -51,14 +38,21 @@ export const createUser = (newuser, history) => dispatch => {
     .catch(respo => dispatch({ type: USER_INFO_FAILED }));
 };
 
+
+// User- Info
+export const USER_INFO_LOADING = "USER_INFO_LOADING";
+export const USER_INFO_FETCH = "USER_INFO_FETCH";
+export const USER_INFO_FAILED = "USER_INFO_FAILED";
 // User Information Fetch
 export const userInfo = id => dispatch => {
   // dispatch({ type: USER_INFO_LOADING });
+  console.log("user info")
   const authAxios = axiosWithAuth();
 
   authAxios
     .get(`http://localhost:5000/api/auth/users/${id}`)
     .then(respo => {
+      console.log("sfwfwefwefw")
       sessionStorage.setItem("username", respo.data.user.username);
       sessionStorage.setItem("userid", respo.data.user.id);
       dispatch({ type: USER_INFO_FETCH, payload: respo.data });
@@ -67,8 +61,13 @@ export const userInfo = id => dispatch => {
 };
 
 // Get All Countries
+
+// Countries-Info
+export const COUNTRIES_LOADING = "COUNTRIES_LOADING";
+export const COUNTRIES_INFO_FETCH = "COUNTRIES_INFO_FETCH";
+export const COUNTRIES_INFO_FAILED = "COUNTRIES_INFO_FAILED";
 export const allCountries = values => dispatch => {
-  // dispatch({ type: COUNTRIES_INFO_LOADING });
+  dispatch({ type: COUNTRIES_LOADING });
   const authAxios = axiosWithAuth();
   authAxios
     .get(
@@ -78,17 +77,24 @@ export const allCountries = values => dispatch => {
     )
     .then(respo => {
       dispatch({ type: COUNTRIES_INFO_FETCH, payload: respo.data });
-    });
+    })
+    .catch(respon => dispatch({ type: COUNTRIES_INFO_FAILED }));
+
 };
 
 // Country Action Fetch
-export const countryFetch = (userid, countryid) => dispatch => {
+
+// One Country
+export const COUNTRY_INFO_LOADING = "COUNTRY_INFO_LOADING";
+export const COUNTRY_INFO_FETCH = "COUNTRY_INFO_FETCH";
+export const COUNTRY_INFO_FAILED = "COUNTRY_INFO_FAILED";
+
+export const countryFetch = (countryid) => dispatch => {
   const authAxios = axiosWithAuth();
-
+  const user_id = sessionStorage.getItem("userId")
   authAxios
-    .get(`http://localhost:5000/api/auth/communities/${userid}/${countryid}`)
+    .get(`http://localhost:5000/api/auth/communities/${user_id}/${countryid}`)
     .then(respo => dispatch({ type: COUNTRY_INFO_FETCH, payload: respo.data }))
-
     .catch(respon => dispatch({ type: COUNTRY_INFO_FAILED }));
 };
 

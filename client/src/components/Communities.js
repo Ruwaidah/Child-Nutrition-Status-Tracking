@@ -4,24 +4,23 @@ import { connect } from "react-redux";
 import { countryFetch, userInfo } from "../actions";
 
 function Communities(props) {
-  console.log(props.user);
-  useEffect(() => {
-    props.userInfo(sessionStorage.getItem("userId"));
-  }, []);
+  console.log(sessionStorage.getItem("userId"));
   useEffect(() => {
     props.countryFetch(
-      sessionStorage.getItem("userid"),
-      props.match.params.countryid
+      props.match.params.country_id
     );
+    props.userInfo(sessionStorage.getItem("userId"));
+
   }, []);
 
-  if (props.communities == undefined || props.communities.length == 0)
+
+  if (!props.communities)
     return (
       <div className="loading">
         <h1>Loading...</h1>
       </div>
     );
-
+  console.log(props.communities)
   return (
     <div>
       <button
@@ -58,7 +57,7 @@ function Communities(props) {
 const mapStatetoProps = state => {
   return {
     user: state.user,
-    communities: state.data
+    communities: state.communities
     // countries: state.data
   };
 };
