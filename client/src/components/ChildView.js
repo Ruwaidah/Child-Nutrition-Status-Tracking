@@ -13,7 +13,7 @@ function ChildView(props) {
     props.userInfo(sessionStorage.getItem("userId"));
 
   }, []);
-  console.log(props.child);
+  console.log(props.childTrack);
   if (!props.child) return <h3>Loading</h3>
   return (
     <div className="alllist">
@@ -81,7 +81,8 @@ const mapStatetoProps = state => {
   return {
     user: state.user,
     isloading: state.isloading,
-    child: state.child
+    child: state.child,
+    childTrack: state.childTrack
   };
 };
 export default connect(mapStatetoProps, { userInfo, getChildRecord })(ChildView);

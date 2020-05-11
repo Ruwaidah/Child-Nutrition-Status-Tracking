@@ -13,13 +13,11 @@ function CreateAUser(props) {
     isAdmin: 0
   });
   const onChange = event => {
-
     setUser({
       ...user,
       [event.target.name]: event.target.value
     });
   };
-  console.log(user);
   const onSubmit = event => {
     event.preventDefault();
     props.createUser(user, props.history);

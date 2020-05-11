@@ -1,4 +1,4 @@
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema.createTable("childs", tbl => {
     tbl.increments();
     tbl.string("childName", 100).notNullable();
@@ -29,7 +29,7 @@ exports.up = function(knex) {
   });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema
     .dropTableIfExists("childs_tracking")
     .dropTableIfExists("childs");

@@ -1,5 +1,5 @@
 const db = require("../../database/db-config.js");
-module.exports = { childsOfcomunity, childById, addingChild };
+module.exports = { childsOfcomunity, childById, addingChild, childTrack };
 
 function childsOfcomunity(id) {
   return db("childs")
@@ -54,9 +54,14 @@ function childById(id) {
     .join("countries", "childs.country_id", "countries.id")
     .join("communities", "community_id", "communities.id")
     .first()
-
 }
 
+
+// childs_tracking
+function childTrack(id) {
+  return db("childs_tracking").where({ id })
+
+}
 
 
 async function addingChild(data, id) {

@@ -28,7 +28,7 @@ function App(props) {
       </div>
     );
   return (
-    <div>
+    <div className="homePage">
       <PrivateRoute path="/:username">
         <Route path="/" component={Header} />
         <Route path="/:username/admin/createcountry" component={CreateACountry} />

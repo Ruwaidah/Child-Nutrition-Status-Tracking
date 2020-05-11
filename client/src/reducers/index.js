@@ -35,7 +35,8 @@ const initiallstate = {
   communities: null,
   records: null,
   child: null,
-  allusers: null
+  allusers: null,
+  childTrack: null
 };
 
 export const rootReducer = (state = initiallstate, actions) => {
@@ -186,7 +187,8 @@ export const rootReducer = (state = initiallstate, actions) => {
     case RECORD_FETCH:
       return {
         ...state,
-        child: actions.payload,
+        child: actions.payload[0],
+        childTrack: actions.payload[1],
         isloading: false,
         error: null
       };
