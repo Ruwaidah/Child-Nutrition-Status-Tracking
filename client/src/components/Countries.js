@@ -1,22 +1,24 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { allCountries } from "../actions";
+import { allCountries, userInfo } from "../actions";
 function Countries(props) {
-  console.log(props.countries);
   useEffect(() => {
     props.allCountries();
-    // props.history.push(`/${sessionStorage.getItem("username")}`);
   }, []);
 
-  if (!props.countries || props.countries.length == 0)
+  if (!props.countries) {
     return (
       <div className="loading">
         <h1>Loading...</h1>
       </div>
-    );
+    )
+  }
   return (
     <div className="countries">
+      <div>
+        <Link to="admin/show-users">Show Users</Link>
+      </div>
       <div className="addcountry">
         <Link to={`/createACountry`}>Add Country</Link>
       </div>
@@ -24,7 +26,7 @@ function Countries(props) {
         {props.countries.map((country, index) => (
           <Link
             className="country"
-            to={`/${country.country_name}/${country.id}/communities`}
+            to={`/${sessionStorage.getItem("username")}/admin/${country.country_name}/${country.id}`}
             key={index}
           >
             {country.country_name}
@@ -38,9 +40,11 @@ function Countries(props) {
 const mapStateToProps = state => {
   console.log(state.data);
   return {
+    user: state.user,
     username: state.user,
-    countries: state.data
+    countries: state.data,
+    loading: state.isloading
   };
 };
 
-export default connect(mapStateToProps, { allCountries })(Countries);
+export default connect(mapStateToProps, { allCountries, userInfo })(Countries);

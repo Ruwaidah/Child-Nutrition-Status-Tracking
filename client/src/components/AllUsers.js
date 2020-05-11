@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { createUser } from "../actions";
+import { Link } from "react-router-dom"
+import { getAllUsers, userInfo } from "../actions";
 import ShowUser from "./ShowUser";
 
 function AllUsers(props) {
   useEffect(() => {
-    props.createUser();
+    props.getAllUsers();
   }, []);
-  console.log(props);
-  console.log(props.allusers);
+
   if (!props.allusers) return <p>Loading</p>;
   return (
     <div className="list-div">
@@ -24,9 +24,10 @@ function AllUsers(props) {
         </button>
       </div>
       <div className="usersList">
-        {props.allusers.map((user, index) => (
-          <ShowUser key={index} showuser={user} history={props.history} />
-        ))}
+        {props.allusers.map((user, index) =>
+          <Link onClick={() => props.userInfo(user.id)} key={index} to={`users-show/${user.username}/${user.id}`}>{user.username}</Link>
+          // <ShowUser key={index} showuser={user} history={props.history} />
+        )}
       </div>
     </div>
   );
@@ -34,10 +35,9 @@ function AllUsers(props) {
 
 const mapStatetoProps = state => {
   return {
-    username: state.user,
-    userAllInfo: state.userInfo,
-    allusers: state.allusers
+    user: state.user,
+    allusers: state.allusers,
   };
 };
 
-export default connect(mapStatetoProps, { createUser })(AllUsers);
+export default connect(mapStatetoProps, { getAllUsers, userInfo })(AllUsers);

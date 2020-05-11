@@ -4,34 +4,25 @@ import { connect } from "react-redux";
 import { countryFetch, userInfo } from "../actions";
 
 function Communities(props) {
-  console.log(props.user);
-  useEffect(() => {
-    props.userInfo(sessionStorage.getItem("userId"));
-  }, []);
+  console.log(sessionStorage.getItem("userId"));
   useEffect(() => {
     props.countryFetch(
-      sessionStorage.getItem("userid"),
-      props.match.params.countryid
+      props.match.params.country_id
     );
+    props.userInfo(sessionStorage.getItem("userId"));
+
   }, []);
 
-  if (props.communities == undefined || props.communities.length == 0)
+  console.log(props.user)
+  if (!props.communities)
     return (
       <div className="loading">
         <h1>Loading...</h1>
       </div>
     );
-
+  console.log(props.communities)
   return (
     <div>
-      <button
-        onClick={event => {
-          event.preventDefault();
-          props.history.goBack();
-        }}
-      >
-        Back
-      </button>
       <button
         onClick={() =>
           props.history.push(
@@ -39,13 +30,13 @@ function Communities(props) {
           )
         }
       >
-        CreateACommunity
+        add Community
       </button>
       <h2>Communities</h2>
 
       {props.communities.map((communitie, index) => (
         <Link
-          to={`/${props.match.params.countryid}/${communitie.communityid}/Children`}
+          to={`${communitie.country_id}/communities/${communitie.community_name}/${communitie.communityid}/Children`}
           key={index}
         >
           <h4>{communitie.community_name}</h4>
@@ -58,7 +49,7 @@ function Communities(props) {
 const mapStatetoProps = state => {
   return {
     user: state.user,
-    communities: state.data
+    communities: state.communities
     // countries: state.data
   };
 };
