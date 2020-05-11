@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { countryFetch, userInfo } from "../actions";
 
 function Communities(props) {
-  console.log(sessionStorage.getItem("userId"));
+  console.log(props);
   useEffect(() => {
     props.countryFetch(
       props.match.params.country_id
@@ -13,7 +13,7 @@ function Communities(props) {
 
   }, []);
 
-  console.log(props.user)
+  console.log(props.communities)
   if (!props.communities)
     return (
       <div className="loading">
@@ -23,15 +23,13 @@ function Communities(props) {
   console.log(props.communities)
   return (
     <div>
-      <button
-        onClick={() =>
-          props.history.push(
-            `/${props.match.params.country}/communities/createacommunity`
-          )
+      <Link
+        to={
+          `${props.match.params.country_id}/communities/createacommunity`
         }
       >
         add Community
-      </button>
+      </Link>
       <h2>Communities</h2>
 
       {props.communities.map((communitie, index) => (

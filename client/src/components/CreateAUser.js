@@ -9,37 +9,25 @@ function CreateAUser(props) {
     username: "",
     email: "",
     password: "",
-    country: "",
-    usertype: false
+    country_name: "",
+    isAdmin: 0
   });
   const onChange = event => {
-    if ([event.target.name] == "usertype") {
-      console.log(event.target.value);
-      if (event.target.value == "true")
-        setUser({
-          ...user,
-          usertype: true
-        });
-      else
-        setUser({
-          ...user,
-          usertype: false
-        });
-    } else {
-      setUser({
-        ...user,
-        [event.target.name]: event.target.value
-      });
-    }
+
+    setUser({
+      ...user,
+      [event.target.name]: event.target.value
+    });
   };
   console.log(user);
   const onSubmit = event => {
     event.preventDefault();
     props.createUser(user, props.history);
-    props.history.push(`/${props.username}/users`);
+    props.history.push(`/${sessionStorage.getItem("username")}/admin/show-users`);
   };
   return (
-    <div className="createUser">
+    <div >
+      {/* className="createUser" */}
       <form onSubmit={onSubmit} className="editeForm">
         <label htmlFor="firstname">First Name: </label>
         <input name="firstname" id="firstname" onChange={onChange} />
@@ -52,11 +40,11 @@ function CreateAUser(props) {
         <label htmlFor="password">Password : </label>
         <input name="password" id="password" onChange={onChange} />
         <label htmlFor="Country">Country : </label>
-        <input name="country" id="Country" onChange={onChange} />
+        <input name="country_name" id="Country" onChange={onChange} />
         <label>User Type:</label>
-        <select name="usertype" onChange={onChange}>
-          <option value="true">Globel Admin</option>
-          <option value="false">Country Admin</option>
+        <select name="isAdmin" onChange={onChange}>
+          <option value="1">Globel Admin</option>
+          <option value="0">Country Admin</option>
         </select>
         <button>Submit</button>
         <button

@@ -1,99 +1,146 @@
 import React, { useState, useEffect } from "react";
-import Paper from "@material-ui/core/Paper";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-import { withFormik, Form, Field } from "formik";
-import * as Yup from "yup";
-import axios from "axios";
+import { createCommunity } from '../actions/index.js';
+import { connect } from "react-redux";
 
-const CreateACommunity = props => {
-  const useStyles = makeStyles({
-    root: {
-      width: "80%",
-      overflowX: "auto",
-      margin: "5%",
-      display: "flex",
-      flexDirection: "column"
-    },
-    form: {
-      width: "65%",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center"
-    },
-    headline: {
-      margin: "2%",
-      paddingTop: "2%"
-    },
-    input: {
-      padding: "2%",
-      margin: "2%"
-    },
-    button: {
-      margin: "2%",
-      width: "30%",
-      padding: "2%"
-    }
+
+function CreateACommunity(props) {
+  const [community, setCommunity] = useState({
+    country_id: props.match.params.country_id,
+    community_name: ""
   });
 
-  const classes = useStyles();
+  const onChange = event => {
+    setCommunity({ ...community, "community_name": event.target.value });
+  };
 
-  // const handleChanges = event => {
-  //   setCommunity({ ...community, [event.target.name]: event.target.value });
-  // };
-
-  // const submitForm = event => {
-  //   event.preventDefault();
-  //   handleChanges(community);
-  //   setCommunity({ communityName: "" });
-  // };
-  //onSubmit={submitForm}           onChange={handleChanges}
-
+  onsubmit = event => {
+    event.preventDefault();
+    props.createCommunity(community);
+    props.history.goBack();
+    setCommunity({
+      community_name: ""
+    });
+  };
   return (
-    <Paper className={classes.root}>
-      <h1 className={classes.headline}>Create A Community</h1>
-      <Form className={classes.form}>
-        <Field
-          as={TextField}
-          className={classes.input}
-          required
-          label="Community Name"
-          type="text"
-          name="communityName"
-          variant="outlined"
+    <div>
+      <form className="editeForm">
+        <label htmlFor="community_name">Community name:</label>
+        <input
+          id="community_name"
+          placeholder="country name"
+          name="community_name"
+          onChange={onChange}
         />
-        <Button className={classes.button} type="submit" variant="contained">
-          Create Community
-        </Button>
-      </Form>
-    </Paper>
+        <button>Submit</button>
+        <button
+          onClick={event => {
+            event.preventDefault();
+            props.history.goBack();
+          }}
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
   );
 };
 
-const FormikCreateACommunity = withFormik({
-  mapPropsToValues({ communityName }) {
-    return {
-      communityName: communityName || ""
-    };
-  },
+const mapStatetoProps = state => {
+  return {
+    user: state.user,
+  };
+};
 
-  validationSchema: Yup.object().shape({
-    communityName: Yup.string().required()
-  }),
+export default connect(mapStatetoProps, { createCommunity })(CreateACommunity);
 
-  handleSubmit(values, { setStatus, resetForm }) {
-    axios
-      .post("https://reqres.in/api/users/", values)
-      .then(response => {
-        setStatus(response.data);
-        console.log(response.data);
-        resetForm();
-      })
-      .catch(error => {
-        console.log(error.response);
-      });
-  }
-})(CreateACommunity);
 
-export default FormikCreateACommunity;
+
+//   const useStyles = makeStyles({
+//     root: {
+//       width: "80%",
+//       overflowX: "auto",
+//       margin: "5%",
+//       display: "flex",
+//       flexDirection: "column"
+//     },
+//     form: {
+//       width: "65%",
+//       display: "flex",
+//       flexDirection: "column",
+//       justifyContent: "center"
+//     },
+//     headline: {
+//       margin: "2%",
+//       paddingTop: "2%"
+//     },
+//     input: {
+//       padding: "2%",
+//       margin: "2%"
+//     },
+//     button: {
+//       margin: "2%",
+//       width: "30%",
+//       padding: "2%"
+//     }
+//   });
+
+//   const classes = useStyles();
+
+//   // const handleChanges = event => {
+//   //   setCommunity({ ...community, [event.target.name]: event.target.value });
+//   // };
+
+//   // const submitForm = event => {
+//   //   event.preventDefault();
+//   //   handleChanges(community);
+//   //   setCommunity({ communityName: "" });
+//   // };
+//   //onSubmit={submitForm}           onChange={handleChanges}
+
+//   return (
+//     <Paper className={classes.root}>
+//       <h1 className={classes.headline}>Create A Community</h1>
+//       <Form className={classes.form}>
+//         <Field
+//           as={TextField}
+//           className={classes.input}
+//           required
+//           label="Community Name"
+//           type="text"
+//           name="communityName"
+//           variant="outlined"
+//         />
+//         <Button className={classes.button} type="submit" variant="contained">
+//           Create Community
+//         </Button>
+//       </Form>
+//     </Paper>
+//   );
+// };
+
+// const FormikCreateACommunity = withFormik({
+//   mapPropsToValues({ communityName }) {
+//     return {
+//       communityName: communityName || ""
+//     };
+//   },
+
+//   validationSchema: Yup.object().shape({
+//     communityName: Yup.string().required()
+//   }),
+
+//   handleSubmit(values, { setStatus, resetForm }) {
+//     axios
+//       .post("https://reqres.in/api/users/", values)
+//       .then(response => {
+//         setStatus(response.data);
+//         console.log(response.data);
+//         resetForm();
+//       })
+//       .catch(error => {
+//         console.log(error.response);
+//       });
+//   }
+// })(CreateACommunity);
+
+// export default FormikCreateACommunity;

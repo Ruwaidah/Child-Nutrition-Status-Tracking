@@ -10,13 +10,14 @@ const loginFieldsMissing = (req, res, next) => {
 
 // register Check
 const registerFieldsMissing = (req, res, next) => {
+  req.body.isAdmin = Number(req.body.isAdmin)
   const {
     username,
     password,
     firstname,
     lastname,
     email,
-    country_id,
+    country_name,
     isAdmin
   } = req.body;
   if (
@@ -26,7 +27,7 @@ const registerFieldsMissing = (req, res, next) => {
     lastname &&
     email &&
     (isAdmin == 0 || isAdmin == 1) &&
-    country_id
+    country_name
   )
     next();
   else

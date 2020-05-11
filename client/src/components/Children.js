@@ -28,7 +28,7 @@ function Children(props) {
       >
         Back
       </button>
-      <Link to={`/childRecord`}>add Child</Link>
+      <Link to={`add/child`}>add Child</Link>
       <h2>Children</h2>
       {props.records.map(child =>
         // <Child child={child} />

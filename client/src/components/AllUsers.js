@@ -13,15 +13,9 @@ function AllUsers(props) {
   return (
     <div className="list-div">
       <div className="createUser">
-        <button
-          onClick={() =>
-            props.history.push(
-              `/${props.userAllInfo.username}/users/createAUser`
-            )
-          }
-        >
+        <Link to="show-users/create/user">
           Create User
-        </button>
+        </Link>
       </div>
       <div className="usersList">
         {props.allusers.map((user, index) =>

@@ -53,16 +53,29 @@ export const countryFetch = (countryid) => dispatch => {
     .catch(respon => dispatch({ type: COUNTRY_INFO_FAILED }));
 };
 
+// Create Community
+export const createCommunity = values => dispatch => {
+  console.log(values)
+  const authAxios = axiosWithAuth();
+  authAxios
+    .post(`http://localhost:5000/api/auth/communities`, values)
+    .then(respo =>
+      dispatch({ type: COUNTRY_INFO_FETCH, payload: respo.data })
+    );
+};
+
+
 // Create Country
 export const createCountry = values => dispatch => {
+  const userId = sessionStorage.getItem("userId")
   const authAxios = axiosWithAuth();
-
   authAxios
-    .post("http://localhost:5000/api/createcountry", values)
+    .post(`http://localhost:5000/api/auth/countries/${userId}`, values)
     .then(respo =>
       dispatch({ type: COUNTRIES_INFO_FETCH, payload: respo.data })
     );
 };
+
 
 
 // ################################################################## USERS ACTIONS ##############################################################
@@ -81,6 +94,7 @@ export const logInaction = (values, history) => dispatch => {
 export const USERS_INFO_FETCH = "USERS_INFO_FETCH";
 // export const USERS_INFO_FAILED = "USERS_INFO_FAILED";
 export const createUser = (newuser, history) => dispatch => {
+  console.log(newuser)
   axios
     .post("http://localhost:5000/api/auth/register", newuser)
     .then(respo => {
@@ -117,25 +131,25 @@ export const editeUser = (id, value) => dispatch => {
       console.log(respo)
       // dispatch({ type: USERS_INFO_FETCH, payload: respo.data })
     })
-
     .catch(respon => console.log(respon));
 };
 
+export const ALL_USERS_FETCH = "ALL_USERS_FETCH";
+export const ALL_USERS_FAILED = "ALL_USERS_FAILED";
 // Delete a User
-export const deleteUser = (id, value) => dispatch => {
+export const deleteUser = (id) => dispatch => {
   const authAxios = axiosWithAuth();
   authAxios
-    .delete(`http://localhost:5000/api/user/${id}`, value)
-    .then(respo => dispatch({ type: USERS_INFO_FETCH, payload: respo.data }))
-    .catch(respon => console.log(respon));
+    .delete(`http://localhost:5000/api/auth/users/${id}`)
+    .then(respo => dispatch({ type: ALL_USERS_FETCH }))
+    .catch(respon => dispatch({ type: ALL_USERS_FAILED }));
 };
 export const cleaning = () => dispatch => {
   dispatch({ type: CLEANING_DATA });
 };
 
 // GET ALL USERS
-export const ALL_USERS_FETCH = "ALL_USERS_FETCH";
-export const ALL_USERS_FAILED = "ALL_USERS_FAILED";
+
 export const getAllUsers = () => dispatch => {
   const authAxios = axiosWithAuth();
   authAxios
@@ -178,6 +192,24 @@ export const getChildRecord = (communityid, childid) => dispatch => {
   let user_id = sessionStorage.getItem("userid");
   authAxios
     .get(`http://localhost:5000/api/auth/childrens/${user_id}/${communityid}/${childid}`)
+    .then(respo => {
+      console.log(respo)
+      dispatch({ type: RECORD_FETCH, payload: respo.data });
+    })
+    .catch(respon => dispatch({ type: RECORD_FAILED }));
+};
+
+
+
+// ADDING CHILD
+export const ADDING_START = "ADDING_START";
+export const ADDING_FETCH = "ADDING_FETCH";
+export const ADDING_FAILED = "ADDING_FAILED";
+
+export const addingChild = (data, communityid) => dispatch => {
+  const authAxios = axiosWithAuth();
+  authAxios
+    .post(`http://localhost:5000/api/auth/childrens/${communityid}`, data)
     .then(respo => {
       console.log(respo)
       dispatch({ type: RECORD_FETCH, payload: respo.data });
