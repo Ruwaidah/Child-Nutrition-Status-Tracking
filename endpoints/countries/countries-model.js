@@ -14,11 +14,21 @@ const isAdmin = (req, res, next) => {
     .catch(error => res.status(500).json({ message: "error getting data" }));
 };
 
+// Country By Name
+function getCountryByName(name) {
+  return db("countries").where({ country_name: name }).first()
+}
+
+
+
+
+
 function getCountries() {
   return db("countries");
 }
 
 module.exports = {
   isAdmin,
-  getCountries
+  getCountries,
+  getCountryByName
 };

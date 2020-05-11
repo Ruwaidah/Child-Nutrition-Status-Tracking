@@ -3,12 +3,10 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { allCountries, userInfo } from "../actions";
 function Countries(props) {
-  console.log(props.countries);
   useEffect(() => {
     props.allCountries();
   }, []);
 
-  console.log(props.loading)
   if (!props.countries) {
     return (
       <div className="loading">
@@ -18,6 +16,9 @@ function Countries(props) {
   }
   return (
     <div className="countries">
+      <div>
+        <Link to="admin/show-users">Show Users</Link>
+      </div>
       <div className="addcountry">
         <Link to={`/createACountry`}>Add Country</Link>
       </div>
