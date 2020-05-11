@@ -28,27 +28,31 @@ function App(props) {
       </div>
     );
   return (
-    <div>
+    <div className="homePage">
       <PrivateRoute path="/:username">
         <Route path="/" component={Header} />
-        <Route path="/createACountry" component={CreateACountry} />
-        <Route path="/:username/admin/show-users" component={AllUsers} />
+        <Route path="/:username/admin/createcountry" component={CreateACountry} />
+        <Route exact path="/:username/admin/show-users" component={AllUsers} />
         <Route exact path="/:username/admin" component={Countries} />
-        <Route exact path="/:username/user/:countryname/:country_id" component={Communities} />
-        <Route exact path="/:username/admin/:countryname/:country_id" component={Communities} />
+        <Route exact path="/:username/user/:countryname/:country_id/" component={Communities} />
+        <Route exact path="/:username/admin/:countryname/:country_id/" component={Communities} />
         <Route exact path="/:username" component={Menu} />
-        <Route path="/childRecord" component={ChildRecordNewForm} />
-        <Route path="/:username/users/createAUser" component={CreateAUser} />
-        <Route path="/:username/admin/users-show/:username/:id" component={ShowUser} />
+
+        <Route exact path="/:username/admin/show-users/create/user" component={CreateAUser} />
+        <Route exact path="/:username/admin/users-show/:username/:id" component={ShowUser} />
         <Route
-          path="/:country/communities/createacommunity"
+          path="/:username/admin/:countryname/:country_id/communities/createacommunity"
           component={CreateACommunity}
         />
         <Route
+          path="/:username/user/:countryname/:country_id/communities/createacommunity"
+          component={CreateACommunity}
+        />
+        {/* <Route
           exact
           path="/:countryid/:communityid/children"
           component={Children}
-        />
+        /> */}
         <Route
           exact
           path="/:user/admin/:countryname/:country_id/communities/:community_name/:communityid/children"
@@ -59,6 +63,9 @@ function App(props) {
           path="/:user/user/:countryname/:country_id/communities/:community_name/:communityid/children"
           component={Children}
         />
+
+        <Route exact path="/:user/admin/:countryname/:country_id/communities/:community_name/:communityid/add/child" component={ChildRecordNewForm} />
+        <Route exact path="/:user/user/:countryname/:country_id/communities/:community_name/:communityid/add/child" component={ChildRecordNewForm} />
         <Route
           exact
           path="/:user/user/:countryname/:country_id/communities/:community_name/:communityid/record/:childid"

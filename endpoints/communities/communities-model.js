@@ -21,7 +21,14 @@ function getCommunity(country_id, community_id) {
     .first();
 }
 
+
+async function adding(data) {
+  let id = await db("communities").insert(data, "id")
+  return getCountryById(data.country_id)
+}
+
 module.exports = {
   getCountryById,
-  getCommunity
+  getCommunity,
+  adding
 };

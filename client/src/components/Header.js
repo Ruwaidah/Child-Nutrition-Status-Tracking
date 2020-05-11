@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { cleaning } from "../actions";
 
 function Header(props) {
+  console.log("fwegfwgwegfw")
   const OnLogOut = () => {
     sessionStorage.clear();
     props.cleaning();
@@ -59,10 +60,10 @@ function Header(props) {
               </NavLink>
             </div>
           ) : (
-            <NavLink exact to={`/${props.username}`}>
-              {props.userAllInfo.country}
-            </NavLink>
-          )
+              <NavLink exact to={`/${props.username}`}>
+                {props.userAllInfo.country}
+              </NavLink>
+            )
         ) : null}
 
         <div>

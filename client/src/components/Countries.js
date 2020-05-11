@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { allCountries, userInfo } from "../actions";
+import { allCountries, userInfo, createCountry } from "../actions";
 function Countries(props) {
   useEffect(() => {
     props.allCountries();
@@ -20,7 +20,7 @@ function Countries(props) {
         <Link to="admin/show-users">Show Users</Link>
       </div>
       <div className="addcountry">
-        <Link to={`/createACountry`}>Add Country</Link>
+        <Link to={`admin/createcountry`}>Add Country</Link>
       </div>
       <div className="countriesList">
         {props.countries.map((country, index) => (
@@ -47,4 +47,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { allCountries, userInfo })(Countries);
+export default connect(mapStateToProps, { allCountries, userInfo, createCountry })(Countries);

@@ -4,19 +4,19 @@ import { createCountry } from "../actions";
 
 const CreateACountry = props => {
   const [country, setCountry] = useState({
-    country: ""
+    country_name: ""
   });
 
   const onChange = event => {
-    setCountry({ country: event.target.value });
+    setCountry({ country_name: event.target.value });
   };
   console.log(country);
   onsubmit = event => {
     event.preventDefault();
     props.createCountry(country);
-    props.history.push(`/${props.username}`);
+    props.history.goBack();
     setCountry({
-      country: ""
+      country_name: ""
     });
   };
   return (

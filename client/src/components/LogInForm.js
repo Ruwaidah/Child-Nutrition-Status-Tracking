@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { logInaction, userInfo } from "../actions";
 import { Link, Redirect } from "react-router-dom";
-import { stat } from "fs";
+import { makeStyles } from "@material-ui/core/styles";
 
 function LogInForm(props) {
   const [values, setValues] = useState({
@@ -29,43 +29,79 @@ function LogInForm(props) {
     // history.push("/test");
   };
 
+
+  const useStyles = makeStyles({
+    root: {
+      width: "100%",
+      overflowX: "auto",
+      margin: "5%",
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between"
+    },
+
+    headline: {
+      margin: "2%",
+      paddingTop: "2%",
+      fontSize: "3rem",
+      color: "white"
+    },
+
+    subtitle: {
+      margin: "2%",
+      fontSize: "1.8rem",
+      color: "white",
+      width: "100%"
+    }
+
+  });
+  const classes = useStyles();
   return (
     <div className="container">
       {sessionStorage.getItem("token") ? (
         <Redirect to={`/${sessionStorage.getItem("username")}`} />
       ) : null}{" "}
-      <div className="loginDiv">
-        <h3>Login Please</h3>
-        {props.error ? <p className="error">{props.error}</p> : null}
-        <form onSubmit={onLogin}>
-          <div className="line">
-            <label htmlFor="username">UserName: </label>
-            <input
-              id="username"
-              name="username"
-              placeholder="username"
-              onChange={onchange}
-              value={values.username}
-            />
+      <>
+        <div className={`${classes.root} header`}>
+          <div>
+            <h1 className={classes.headline}>MALO </h1>
+            <h3 className={classes.subtitle}>International Child Nutrition Status Tracker</h3>
           </div>
-          <div className="line">
-            <label htmlFor="password">Password: </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="password"
-              onChange={onchange}
-              value={values.password}
-            />
-          </div>
-          <button>LogIn</button>
-        </form>
-        <p className="forgot">
-          forgot your password? <Link to="">Reset Password</Link>
-        </p>
-      </div>
+        </div>
+        <div className="loginDiv">
+          <h3>Login</h3>
+          {props.error ? <p className="error">{props.error}</p> : null}
+          <form onSubmit={onLogin}>
+            <div className="line">
+              <label htmlFor="username">UserName </label>
+              <input
+                id="username"
+                name="username"
+                placeholder="username"
+                onChange={onchange}
+                value={values.username}
+              />
+            </div>
+            <div className="line">
+              <label htmlFor="password">Password </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="password"
+                onChange={onchange}
+                value={values.password}
+              />
+            </div>
+            <button>LogIn</button>
+          </form>
+          <p className="forgot">
+            forgot your password? <Link to="">Reset Password</Link>
+          </p>
+        </div>
+      </>
     </div>
+
   );
 }
 const mapStatetoProps = state => {

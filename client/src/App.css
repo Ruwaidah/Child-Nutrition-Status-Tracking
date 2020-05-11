@@ -33,10 +33,11 @@ a {
 /* Error */
 
 .error {
+  margin: 0;
   font-size: 19px;
   color: rgb(199, 80, 80);
   text-align: start;
-  width: 60%;
+  width: 40%;
 }
 .active {
   color: red;
@@ -48,68 +49,119 @@ a {
 
 /* Login */
 .container {
+  width: 100%;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: start;
+  background: url(./Images/food1.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .loginDiv {
-  height: 500px;
-  background: #222222;
-  min-width: 50%;
-  margin: 100px auto;
+  font-family: 'Roboto', sans-serif;
+  /* height: 500px; */
+  /* background: #222222; */
+  width: 60%;
+  margin: 20px auto;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
-  border-radius: 10px;
-  box-shadow: #222222 10px 5px 50px;
+  /* border-radius: 10px; */
+  /* box-shadow: #222222 10px 5px 50px; */
 }
 
 .loginDiv h3 {
+  width:40%;
   font-size: 40px;
-  color: wheat;
+  color: black;
+  text-align: start;
+  margin-bottom: 20px;
 }
 
 .loginDiv form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 40%;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
+  margin-bottom: 10px;
+  
 }
+@media screen and (max-width: 1400px) {
+  .container .header{
+    margin-bottom: 10px;
+  }
+  .error {
+    width: 68%;
+  }
+  .loginDiv {
+    margin: 0 auto;
+  }
+  .loginDiv h3 {
+    font-size: 30px;
+    width: 68%;
+  }
+  .loginDiv form  {
+    width: 70%;
+  }
+  .loginDiv form .line label  {
+    font-size:23px  
+  }
+  .loginDiv form  .line input  {
+    font-size:23px 
+  }
+}
+
 
 .loginDiv form div {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
 }
+
+
 .loginDiv form div .line {
-  width: 100%;
-  display: flex;
-  margin: 0 auto;
+  /* width: 100%; */
+  /* display: flex; */
+  /* margin: 0 auto; */
   /* flex-wrap: wrap; */
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
 }
+
+
+/* .loginDiv form div .line label {
+  color: whitesmoke;
+  width:100%;
+  text-align: start;
+} */
 .loginDiv form div input {
   border: none;
   border-radius: 5px;
   height: 50px;
   padding-left: 10px;
-  width: 50%;
-  font-size: 25px;
+  width: 96%;
+  font-size: 28px;
+  outline: none;
 }
 .loginDiv form div label {
-  text-align: end;
-  width: 18%;
-  font-size: 25px;
+  width:96%;
+  text-align: start;
+  font-size: 28px;
   margin-right: 15px;
-  color: wheat;
+  color: black;
 }
 .loginDiv .forgot {
-  color: wheat;
+  /* margin-top: 20px; */
+  color: white;
+  height: 40px;
+  margin: 0;
 }
 
 .loginDiv .forgot a {
@@ -119,16 +171,19 @@ a {
 .loginDiv form button {
   font-size: 25px;
   width: 200px;
-  border: white;
+  border: none;
   padding: 10px;
-  border-radius: 10px;
-  color: wheat;
+  border-radius: 4px;
+  color: white;
   background: #222222;
+  height: 54px;
+  margin-top: 20px;
 }
 
 .loginDiv form button:hover {
-  background: wheat;
-  color: #222222;
+  /* color: #222222; */
+  /* color: wheat; */
+  border:white 1px solid
 }
 
 .countries {
@@ -289,3 +344,7 @@ a:hover {
 }
 
 /* Countries */
+
+
+
+

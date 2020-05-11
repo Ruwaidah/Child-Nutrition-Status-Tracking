@@ -11,9 +11,9 @@ function Menu(props) {
     props.userInfo(sessionStorage.getItem("userId"));
   }, []);
 
-  console.log(props.loading)
+  console.log(props.user)
 
-  if (!props.user.country_id) return <p>Loading</p>
+  if (!props.user || !props.user.country_id) return <p>Loading</p>
 
 
   return (

@@ -20,15 +20,27 @@ function getCountryByName(name) {
 }
 
 
-
+async function addNewCountry(data) {
+  let id = await db("countries").insert(data, "id")
+  return getCountries()
+}
 
 
 function getCountries() {
   return db("countries");
 }
 
+
+async function deleteCountry(id) {
+  let id = await db("countries").where({ id }).del()
+  return getCountries()
+}
+
 module.exports = {
   isAdmin,
   getCountries,
-  getCountryByName
+  getCountryByName,
+  addNewCountry,
+  deleteCountry
+
 };

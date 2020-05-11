@@ -16,6 +16,17 @@ router.get("/:userid/:countryid", checkAdmin, (req, res) => {
     .catch(error => res.status(500).json({ message: "error getting data" }));
 });
 
+
+router.post("/", (req, res) => {
+  console.log(req.body)
+  communities
+    .adding(req.body)
+    .then(allcommunities => {
+      res.status(200).json(allcommunities);
+    })
+    .catch(error => res.status(500).json({ message: "error getting data" }));
+});
+
 function checkAdmin(req, res, next) {
   Users.findUserByid(req.params.userid)
     .then(user => {

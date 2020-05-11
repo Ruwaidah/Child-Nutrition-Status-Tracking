@@ -3,7 +3,8 @@ const db = require("../../database/db-config.js");
 module.exports = {
   findUserByid,
   allUsers,
-  userUpdate
+  userUpdate,
+  deleteUser
 };
 
 function allUsers() {
@@ -45,4 +46,11 @@ function findUserByid(id) {
     .where({ "users.id": id })
     .join("countries", "country_id", "countries.id")
     .first();
+}
+
+
+
+function deleteUser(id) {
+  return db("users")
+    .where({ "users.id": id }).del()
 }
