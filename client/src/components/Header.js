@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { cleaning } from "../actions";
 
 function Header(props) {
-  console.log("fwegfwgwegfw")
+  console.log(props.user)
   const OnLogOut = () => {
     sessionStorage.clear();
     props.cleaning();
@@ -47,39 +47,39 @@ function Header(props) {
   return (
     <div className="nav">
       <div className={`${classes.root} header`}>
-        <div>
+        <div className="malo">
           <h1 className={classes.headline}>MALO </h1>
           <h3>International Child Nutrition Status Tracker</h3>
         </div>
-        {props.userAllInfo ? (
-          props.userAllInfo.usertype ? (
-            <div>
-              <NavLink to={`/${props.username}/users`}>Users</NavLink>
-              <NavLink exact to={`/${props.username}`}>
-                Countries
-              </NavLink>
-            </div>
-          ) : (
-              <NavLink exact to={`/${props.username}`}>
-                {props.userAllInfo.country}
-              </NavLink>
-            )
-        ) : null}
-
-        <div>
-          <Button onClick={OnLogOut} variant="contained">
-            LogOut
-          </Button>
-        </div>
       </div>
+      {props.user ? (
+        props.user.isAdmin == "1" ? (
+          <div className="nav-btn">
+            <NavLink to={`/${sessionStorage.getItem("username")}/admin/show-users`}>Users</NavLink>
+            <NavLink exact to={`/${sessionStorage.getItem("username")}/admin`}>
+              Countries
+              </NavLink>
+          </div>
+        ) : (
+            <NavLink exact to={`/${sessionStorage.getItem("username")}/user/${props.user.country_name}/${props.user.country_id}`}>
+              {props.user.country_name}
+            </NavLink>
+          )
+      ) : null}
+
+      <div className="logout">
+        <button onClick={OnLogOut} >
+          LogOut
+          </button>
+      </div>
+
     </div>
   );
 }
 
 const mapStatetoProps = state => {
   return {
-    username: state.user,
-    userAllInfo: state.userInfo
+    user: state.user
   };
 };
 

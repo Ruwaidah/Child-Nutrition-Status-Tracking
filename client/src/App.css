@@ -1,8 +1,14 @@
 .App {
   text-align: center;
   min-height: 100vh;
+
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(240, 240, 240);
+}
 .App-logo {
   height: 40vmin;
 }
@@ -28,6 +34,7 @@ a {
 
 .header {
   font-size: 25px;
+  width:30% !important;
 }
 
 /* Error */
@@ -39,16 +46,49 @@ a {
   text-align: start;
   width: 40%;
 }
+
+.nav {
+  display: flex;
+  margin: 20px;
+  align-items: flex-end;
+  justify-content: space-between;
+
+}
+
+.nav-btn{
+  width: 16%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-btn a{
+  color: black;
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+}
+
 .active {
-  color: red;
+  color: rgb(19, 100, 25) !important;
   /* background: rgba(34, 34, 34, 0.96); */
 }
-/* .nav {
-  display: flex;
-} */
+.nav .header {
+  margin: 0;
+}
+.nav .header .malo h1{
+  margin: 0;
+}
+
+.nav .logout button{
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  margin-right: 28px;
+  border: none;
+  color: red
+}
 
 /* Login */
 .container {
+  
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -70,11 +110,13 @@ a {
   justify-content: start;
   align-items: center;
   flex-direction: column;
+  background: none;
   /* border-radius: 10px; */
   /* box-shadow: #222222 10px 5px 50px; */
 }
 
 .loginDiv h3 {
+  background: none;
   width:40%;
   font-size: 40px;
   color: black;
@@ -83,6 +125,7 @@ a {
 }
 
 .loginDiv form {
+  background: none;
   display: flex;
   flex-direction: column;
   width: 40%;
@@ -91,9 +134,23 @@ a {
   margin-bottom: 10px;
   
 }
+
+.container .header div{
+  /* margin-bottom: 10px; */
+  background: none 
+}
+
+.container .header h3 {
+  background: none
+}
+
+.container div h1 {
+  background: none 
+}
 @media screen and (max-width: 1400px) {
   .container .header{
     margin-bottom: 10px;
+    background: none;
   }
   .error {
     width: 68%;
@@ -118,6 +175,7 @@ a {
 
 
 .loginDiv form div {
+  background: none;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -126,21 +184,7 @@ a {
 }
 
 
-.loginDiv form div .line {
-  /* width: 100%; */
-  /* display: flex; */
-  /* margin: 0 auto; */
-  /* flex-wrap: wrap; */
-  /* justify-content: center;
-  align-items: center; */
-}
 
-
-/* .loginDiv form div .line label {
-  color: whitesmoke;
-  width:100%;
-  text-align: start;
-} */
 .loginDiv form div input {
   border: none;
   border-radius: 5px;
@@ -149,15 +193,19 @@ a {
   width: 96%;
   font-size: 28px;
   outline: none;
+  margin-bottom: 20px;
 }
 .loginDiv form div label {
+  background: none;
   width:96%;
   text-align: start;
   font-size: 28px;
   margin-right: 15px;
   color: black;
+
 }
 .loginDiv .forgot {
+  background: none;
   /* margin-top: 20px; */
   color: white;
   height: 40px;
@@ -165,6 +213,7 @@ a {
 }
 
 .loginDiv .forgot a {
+  background: none;
   color: rgb(199, 80, 80);
   font-size: 17px;
 }
@@ -186,46 +235,65 @@ a {
   border:white 1px solid
 }
 
-.countries {
+.countries,  .communities, .list-div{
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  align-items: center;
+  width:80%;
+  margin: 0 auto;
+  align-items: flex-start;
 }
 
-.countries .countriesList {
+.countries .countriesList, .childs-list, .communities .communitiesList, .childs-list {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 60px auto 0 auto;
+  width:100%;
+  /* flex-wrap: wrap; */
 }
 
-.countries .addcountry {
+.countries .addcountry, .communities .addcommunity, .addChild {
+  width:100%;
   margin: 30px auto;
   width: 100%;
-  text-align: center;
+  text-align: end;
 }
-.countries a {
-  min-width: 20%;
+.countries a,  .communities a , .list-div a{
   font-size: 25px;
   text-decoration: none;
-  color: wheat;
-  background: #222222;
-  padding: 20px;
-  margin: 10px;
-  border-radius: 5px;
+  color: black;
+
 }
-.countries .country {
-  margin-top: 20px;
+.countries .countriesList a .communities .communitiesList a {
+  padding-left: 10px;
+  margin-top: 10px;
+  text-align: start;
+  margin-bottom: 16px;
+}
+.communities .communitiesList, .childs-list {
+  padding-top: 40px;
+}
+
+.communities .communitiesList h2, .childs-list h2 {
+  margin-bottom: 40px;
+}
+
+
+.country, .community, .child {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
+  width:100%;
+  height: 80px;
+  border-bottom: 1px solid black;
+  /* text-align: center;
+  width: 20%; */
 }
-.countries .country a {
-  text-align: center;
-  width: 20%;
+
+.childs-list h2 {
+  color: black;
 }
-a:hover {
-  color: red;
-}
+
+
 
 .usersList {
   display: flex;
@@ -256,7 +324,7 @@ a:hover {
   width: 100%;
   margin-bottom: 5px;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   font-size: 30px;
   align-items: center;
   justify-content: center;
@@ -264,17 +332,17 @@ a:hover {
 }
 
 .field p {
-  width: 50%;
+  /* width: 50%; */
   font-size: 20px;
   border: none;
   border-radius: 5px;
-  color: wheat;
+  color: black;
 }
 
 .field h5 {
   text-align: end;
   font-size: 20px;
-  width: 25%;
+  /* width: 25%; */
   margin: 0;
   margin-right: 40px;
 }
@@ -347,4 +415,84 @@ a:hover {
 
 
 
+
+/* ###################################### child-View */
+.childView {
+  width:100%
+}
+.child-profile, .record  {
+  font-family: 'Roboto', sans-serif;
+  margin-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.child-profile .field, .record .field {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 28%;
+  border: black 1px solid;
+  height: 58px;
+}
+
+.child-profile .field h5 , .record .field h5{
+  padding-left: 10px;
+  font-size: 18px;
+  text-align: start;
+  margin: 0;
+}
+
+.child-profile .field p, .record .field p {
+  padding-left: 10px;
+  font-size: 22px;
+} 
+
+.childTrack {
+  margin-left: 8%;
+  margin-top: 6%;
+}
+
+.record-container {
+  /* margin: 0 auto; */
+  width:60%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  margin-top: 4%;
+
+}
+
+
+.date {
+  width:100%;
+  border-bottom: 1px solid black;
+}
+
+
+.record {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: start;
+}
+
+.record .field  {
+  width:40%;
+  border:none;
+  height: 28px;
+}
+.record .field h5 {
+  padding: 0;
+}
+.disc{
+  width: 100% !important
+}
+.record-container  .date {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}
 

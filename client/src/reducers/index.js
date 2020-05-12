@@ -94,13 +94,13 @@ export const rootReducer = (state = initiallstate, actions) => {
       };
 
     // Country Fetch
-    // case COUNTRY_INFO_LOADING:
-    //   console.log(actions.payload);
-    //   return {
-    //     ...state,
-    //     isloading: true,
-    //     error: null
-    //   };
+    case COUNTRY_INFO_LOADING:
+      console.log(actions.payload);
+      return {
+        ...state,
+        communities: null,
+        error: null
+      };
     case COUNTRY_INFO_FETCH:
       console.log(actions.payload);
       return {
@@ -156,7 +156,7 @@ export const rootReducer = (state = initiallstate, actions) => {
     case RECORDS_START:
       return {
         ...state,
-        isloading: true,
+        records: null,
         error: null
       };
 

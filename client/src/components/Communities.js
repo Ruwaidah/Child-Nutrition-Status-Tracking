@@ -22,24 +22,31 @@ function Communities(props) {
     );
   console.log(props.communities)
   return (
-    <div>
-      <Link
-        to={
-          `${props.match.params.country_id}/communities/createacommunity`
-        }
-      >
-        add Community
-      </Link>
-      <h2>Communities</h2>
+    <div className="communities">
 
-      {props.communities.map((communitie, index) => (
+      <div className="communitiesList">
+        <h2>Communities</h2>
+
+        {props.communities.map((communitie, index) => (
+          <div className="community">
+            <Link
+              to={`${communitie.country_id}/communities/${communitie.community_name}/${communitie.communityid}/Children`}
+              key={index}
+            >
+              {communitie.community_name}
+            </Link>
+          </div>
+        ))}
+      </div>
+      <div className="addcommunity">
         <Link
-          to={`${communitie.country_id}/communities/${communitie.community_name}/${communitie.communityid}/Children`}
-          key={index}
+          to={
+            `${props.match.params.country_id}/communities/createacommunity`
+          }
         >
-          <h4>{communitie.community_name}</h4>
-        </Link>
-      ))}
+          Add Community
+      </Link>
+      </div>
     </div>
   );
 }

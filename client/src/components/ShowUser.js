@@ -100,7 +100,7 @@ function ShowUser(props) {
         </div>
 
         {edite ? <div className="field">
-          {gettheUSer.isAdmin == 1 ? (
+          {gettheUSer.isAdmin === 1 ? (
             <>
               <h5>User Type: </h5>
               <select name="isAdmin" onChange={onChange}>
@@ -124,7 +124,7 @@ function ShowUser(props) {
         </div> :
           <div className="field">
             <h5>User Type: </h5>
-            {props.user.isAdmin == 1 ? (
+            {props.user.isAdmin === 1 ? (
               <p> Globel Admin </p>
             ) : (
                 <p> Country Admin </p>

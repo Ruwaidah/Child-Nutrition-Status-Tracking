@@ -20,22 +20,17 @@ function Children(props) {
 
   return (
     <div className="list-div">
-      <button
-        onClick={event => {
-          event.preventDefault();
-          props.history.goBack();
-        }}
-      >
-        Back
-      </button>
-      <Link to={`add/child`}>add Child</Link>
-      <h2>Children</h2>
-      {props.records.map(child =>
-        // <Child child={child} />
-        <div ><Link to={`record/${child.id}`}> {child.childName}</Link></div>
-
-
-      )}
+      <div className="childs-list">
+        <h2>Children List</h2>
+        {props.records.map(child =>
+          <div className="child" >
+            <Link to={`record/${child.id}`}> {child.childName}</Link>
+          </div>
+        )}
+      </div>
+      <div className="addChild">
+        <Link to={`add/child`}>add Child</Link>
+      </div>
     </div >
   );
 }
