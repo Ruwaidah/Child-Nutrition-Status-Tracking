@@ -5,14 +5,17 @@ import { Line } from 'react-chartjs-2';
 
 
 
+
 function RecordsChart(props) {
     let weights = [props.child.weight]
     let dates = [props.child.birth]
+    let heights = [props.child.height]
     console.log("wefwfw", props.childTrack.length)
     for (let i = 0; i < props.childTrack.length; i++) {
         console.log(props.childTrack[i])
         weights.push(props.childTrack[i].weight)
         dates.push(props.childTrack[i].date)
+        heights.push(props.childTrack[i].height)
     }
     console.log(dates, weights)
     const data = {
@@ -38,7 +41,30 @@ function RecordsChart(props) {
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: weights
+                data: weights,
+
+            },
+            {
+                label: "height",
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: '#B22222',
+                borderColor: '#B22222',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: '#B22222',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: '#B22222',
+                pointHoverBorderColor: '#B22222',
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: heights,
+
             }
         ]
     }; return (
