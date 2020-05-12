@@ -5,6 +5,7 @@ import { allCountries, userInfo, createCountry } from "../actions";
 function Countries(props) {
   useEffect(() => {
     props.allCountries();
+    props.userInfo(sessionStorage.getItem("userId"))
   }, []);
 
   if (!props.countries) {
@@ -16,22 +17,21 @@ function Countries(props) {
   }
   return (
     <div className="countries">
-      <div>
-        <Link to="admin/show-users">Show Users</Link>
-      </div>
-      <div className="addcountry">
-        <Link to={`admin/createcountry`}>Add Country</Link>
-      </div>
       <div className="countriesList">
         {props.countries.map((country, index) => (
-          <Link
-            className="country"
-            to={`/${sessionStorage.getItem("username")}/admin/${country.country_name}/${country.id}`}
-            key={index}
-          >
-            {country.country_name}
-          </Link>
+          <div className="country">
+            <Link
+              to={`/${sessionStorage.getItem("username")}/admin/${country.country_name}/${country.id}`}
+              key={index}
+            >
+              {country.country_name}
+            </Link>
+          </div>
         ))}
+      </div>
+
+      <div className="addcountry">
+        <Link to={`admin/createcountry`}>Add Country</Link>
       </div>
     </div>
   );

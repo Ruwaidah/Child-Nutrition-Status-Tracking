@@ -80,14 +80,11 @@ function checkIfAdminForChild(req, res, next) {
             if (comunity) {
               childs
                 .childById(id)
-                .then(allChilds => {
-                  console.log(allChilds); res.status(200).json(allChilds)
+                .then(child => {
+                  childs.childTrack(req.params.childid).then(result => res.status(200).json([child, result]))
                 })
-                .catch(error => {
-                  console.log(error)
-                  res.status(500).json({ message: "error getting data" })
-                }
-                );
+                .catch(error => res.status(500).json({ message: "error getting data" })
+                ).catch(error => res.status(500).json({ message: "error getting data" }));
             } else {
               res.status(401).json("Don't Have access");
             }

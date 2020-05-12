@@ -45,6 +45,7 @@ export const COUNTRY_INFO_FETCH = "COUNTRY_INFO_FETCH";
 export const COUNTRY_INFO_FAILED = "COUNTRY_INFO_FAILED";
 
 export const countryFetch = (countryid) => dispatch => {
+  dispatch({ type: COUNTRY_INFO_LOADING })
   const authAxios = axiosWithAuth();
   const user_id = sessionStorage.getItem("userId")
   authAxios
@@ -169,6 +170,7 @@ export const RECORDS_START = "RECORDS_START";
 export const RECORDS_FETCH = "RECORDS_FETCH";
 export const RECORDS_FAILED = "RECORDS_FAILED";
 export const getRecords = id => dispatch => {
+  dispatch({ type: RECORDS_START })
   const authAxios = axiosWithAuth();
   let user_id = sessionStorage.getItem("userid");
   authAxios

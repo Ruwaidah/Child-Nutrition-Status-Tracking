@@ -37,21 +37,24 @@ function LogInForm(props) {
       margin: "5%",
       display: "flex",
       flexDirection: "row",
-      justifyContent: "space-between"
+      justifyContent: "space-between",
+      background: "none"
     },
 
     headline: {
       margin: "2%",
       paddingTop: "2%",
       fontSize: "3rem",
-      color: "white"
+      color: "white",
+      background: "none"
     },
 
     subtitle: {
       margin: "2%",
       fontSize: "1.8rem",
       color: "white",
-      width: "100%"
+      width: "100%",
+      background: "none"
     }
 
   });
@@ -62,7 +65,7 @@ function LogInForm(props) {
         <Redirect to={`/${sessionStorage.getItem("username")}`} />
       ) : null}{" "}
       <>
-        <div className={`${classes.root} header`}>
+        <div className={`${classes.root} header`} >
           <div>
             <h1 className={classes.headline}>MALO </h1>
             <h3 className={classes.subtitle}>International Child Nutrition Status Tracker</h3>
