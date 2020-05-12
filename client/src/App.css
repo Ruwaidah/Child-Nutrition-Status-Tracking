@@ -45,6 +45,7 @@ a {
   color: rgb(199, 80, 80);
   text-align: start;
   width: 40%;
+  background: none;
 }
 
 .nav {
@@ -252,13 +253,13 @@ a {
   /* flex-wrap: wrap; */
 }
 
-.countries .addcountry, .communities .addcommunity, .addChild {
+.countries .addcountry, .communities .addcommunity, .addChild , .addrecord{
   width:100%;
   margin: 30px auto;
   width: 100%;
   text-align: end;
 }
-.countries a,  .communities a , .list-div a{
+.countries a,  .communities a , .list-div a, .addrecord a{
   font-size: 25px;
   text-decoration: none;
   color: black;
@@ -417,6 +418,17 @@ a {
 
 
 /* ###################################### child-View */
+
+.addrecord {
+  font-family: 'Roboto', sans-serif;
+  width: 90%;
+  margin: 60px auto 0 auto;
+  text-align: center;
+}
+
+.addrecord a {
+  color: rgb(114, 30, 30);
+}
 .childView {
   width:100%
 }
@@ -496,3 +508,102 @@ a {
   justify-content: start;
 }
 
+
+.newChild {
+  font-family: 'Roboto', sans-serif;
+  width: 40%;
+  margin: 60px auto
+}
+
+.newChild h1 {
+  margin-bottom: 40px;
+}
+.newChild form , .adding-newRecord form {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.newChild form div, .adding-newRecord form div {
+  margin: 10px 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  width: 46%
+}
+
+.newChild form div label, .adding-newRecord form div label {
+  font-size: 20px;
+}
+
+.newChild form div input, .adding-newRecord form div input {
+  border-radius: 2px;
+  padding-left: 10px;
+  font-size: 18px;
+  height: 48px;
+  border:none;
+  outline: black;
+  background: rgb(219, 217, 217);
+}
+
+.newChild .add-child-btn {
+width: 100%;
+margin-top: 20px;
+}
+
+.newChild .add-child-btn button {
+  width:40%;
+  margin: 0 auto;
+  height: 40px;
+  font-size: 18px;
+}
+
+
+.viewallrecords {
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  text-align: end !important;
+  color: rgb(85, 28, 28)
+}
+
+
+
+/* adding ew record for a child */
+.adding-newRecord {
+  margin-top: 60px;
+  border-top: black solid 1px;
+  width: 100%;
+
+}
+
+.adding-newRecord h2 {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  margin-top: 20px
+}
+
+.adding-newRecord form {
+  font-family: 'Roboto', sans-serif;
+  width: 60%;
+  margin: 0 auto;
+
+}
+#adding-des {
+  width: 100%;
+}
+
+#adding-des textarea {
+  height: 100px;
+}
+
+
+#adding-record-btns {
+  width: 100%;
+}
+
+#adding-record-btns button {
+  font-family: 'Roboto', sans-serif;
+  width: 40%;
+  margin: 10px auto;
+  height: 40px;
+}

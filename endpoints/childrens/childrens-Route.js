@@ -57,7 +57,6 @@ router.post("/:comid", (req, res) => {
 
 // CHILD BY ID
 router.get("/:userid/:communityid/:childid", checkIfAdminForChild, (req, res) => {
-  console.log(req.params)
   childs
     .childById(req.params.childid)
     .then(child => {
@@ -67,6 +66,23 @@ router.get("/:userid/:communityid/:childid", checkIfAdminForChild, (req, res) =>
     .catch(error => { console.log(error); res.status(500).json({ message: "error getting data" }) })
     .catch(error => { console.log(error); res.status(500).json({ message: "error getting data" }) });
 });
+
+
+router.post("/adding/record/:childid", (req, res) => {
+  console.log("Rwgfergergre")
+  childs
+    .addingChildTrack(req.params.childid, req.body)
+    .then(child => {
+      console.log(child)
+      childs.childTrack(req.params.childid)
+        .then(result => { console.log(result); res.status(200).json([child, result]) })
+    })
+    .catch(error => { console.log(error); res.status(500).json({ message: "error getting data" }) })
+    .catch(error => { console.log(error); res.status(500).json({ message: "error getting data" }) });
+});
+
+
+
 
 function checkIfAdminForChild(req, res, next) {
   const id = Number(req.params.childid);

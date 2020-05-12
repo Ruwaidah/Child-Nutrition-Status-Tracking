@@ -187,7 +187,6 @@ export const getRecords = id => dispatch => {
 export const RECORD_START = "RECORD_START";
 export const RECORD_FETCH = "RECORD_FETCH";
 export const RECORD_FAILED = "RECORD_FAILED";
-// User Information Fetch
 export const getChildRecord = (communityid, childid) => dispatch => {
   // dispatch({ type: RECORDS_START });
   const authAxios = axiosWithAuth();
@@ -201,6 +200,18 @@ export const getChildRecord = (communityid, childid) => dispatch => {
     .catch(respon => dispatch({ type: RECORD_FAILED }));
 };
 
+
+export const addingChildRecord = (data, childid) => dispatch => {
+  // dispatch({ type: RECORDS_START });
+  const authAxios = axiosWithAuth();
+  authAxios
+    .post(`http://localhost:5000/api/auth/childrens//adding/record/${childid}`, data)
+    .then(respo => {
+      console.log(respo)
+      dispatch({ type: RECORD_FETCH, payload: respo.data });
+    })
+    .catch(respon => dispatch({ type: RECORD_FAILED }));
+};
 
 
 // ADDING CHILD
