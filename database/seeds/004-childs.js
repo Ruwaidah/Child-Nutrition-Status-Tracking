@@ -1,13 +1,13 @@
-exports.seed = function(knex) {
+exports.seed = function (knex) {
   // Deletes ALL existing entries
-  return knex("childs").then(function() {
+  return knex("childs").then(function () {
     // Inserts seed entries
     return knex("childs").insert([
       {
         id: 1,
         childName: "Sam",
         gender: "male",
-        birth: "12-02-2015",
+        birth: "2015-12-02",
         weight: "2",
         height: "10",
         parentName: "michael",
@@ -24,7 +24,7 @@ exports.seed = function(knex) {
         id: 2,
         childName: "sarah",
         gender: "female",
-        birth: "08-14-2016",
+        birth: "2016-08-14",
         weight: "3",
         height: "20",
         parentName: "Ruwaidah",
@@ -41,7 +41,7 @@ exports.seed = function(knex) {
         id: 3,
         childName: "rowValue1",
         gender: "male",
-        birth: "06-25-2011",
+        birth: "2011-06-25",
         weight: "3.5",
         height: "18",
         parentName: "Ruwaidah",

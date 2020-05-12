@@ -34,7 +34,7 @@ const ChildRecordNewForm = props => {
   };
 
   return (
-    <div >
+    <div className="newChild">
       <h1 >New Child Record</h1>
       <form onSubmit={onSubmit}>
         <div>
@@ -45,6 +45,8 @@ const ChildRecordNewForm = props => {
             name="childName"
             placeholder="Child Name"
           />
+        </div>
+        <div>
           <label htmlFor="parentsNames">PARENTS' NAMES</label>
           <input
             onChange={onChange}
@@ -61,6 +63,8 @@ const ChildRecordNewForm = props => {
             name="street"
             placeholder="Street Address"
           />
+        </div>
+        <div>
           <label htmlFor="communityName">CITY NAME</label>
           <input
             onChange={onChange}
@@ -68,8 +72,9 @@ const ChildRecordNewForm = props => {
             name="city"
             placeholder="Community"
           />
-
-          <label htmlFor="communityName">STATE NAME</label>
+        </div>
+        <div>
+          <label htmlFor="communityName">STATE </label>
           <input
             onChange={onChange}
             type="text"
@@ -78,13 +83,6 @@ const ChildRecordNewForm = props => {
           />
         </div>
         <div>
-          {/* <label htmlFor="zipcode">ZIPCODE</label>
-          <input
-            onChange={onChange}
-            type="text"
-            name="zipcode"
-            placeholder="Zipcode"
-          /> */}
           <label htmlFor="phoneNumber">PHONE NUMBER</label>
           <input
             onChange={onChange}
@@ -92,6 +90,8 @@ const ChildRecordNewForm = props => {
             name="phoneNo"
             placeholder="+XX (XXX) XXX-XXXX"
           />
+        </div>
+        <div>
           <label htmlFor="country">COUNTRY</label>
           <input
             onChange={onChange}
@@ -106,21 +106,8 @@ const ChildRecordNewForm = props => {
             onChange={onChange}
             type="date"
             name="screenDate"
-            placeholder="mm/dd/yy"
+          // placeholder="mm/dd/yy"
           />
-          {/* <label htmlFor="screenCommunity">LOCATION OF SCREENING</label>
-          <input
-            onChange={onChange}
-            type="text"
-            name="screenCommunity"
-            placeholder="Community"
-          /> */}
-          {/* <input
-            onChange={onChange}
-            type="text"
-            name="screenCountry"
-            placeholder="Country"
-          /> */}
         </div>
         <div>
           <label htmlFor="birthdate">DATE OF BIRTH</label>
@@ -128,8 +115,10 @@ const ChildRecordNewForm = props => {
             onChange={onChange}
             type="date"
             name="birth"
-            placeholder="mm/dd/yy"
+          // placeholder="mm/dd/yy"
           />
+        </div>
+        <div>
           <label htmlFor="gender">GENDER</label>
           <input
             onChange={onChange}
@@ -146,6 +135,8 @@ const ChildRecordNewForm = props => {
             name="height"
             placeholder="0"
           />
+        </div>
+        <div>
           <label htmlFor="weight">WEIGHT</label>
           <input
             onChange={onChange}
@@ -154,9 +145,11 @@ const ChildRecordNewForm = props => {
             placeholder="0"
           />
         </div>
-        <button type="submit" variant="contained">
-          CREATE RECORD
+        <div className="add-child-btn">
+          <button type="submit" variant="contained">
+            CREATE RECORD
           </button>
+        </div>
       </form>
     </div>
   );
