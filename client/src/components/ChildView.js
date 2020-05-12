@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import { connect } from "react-redux";
 import { getChildRecord, userInfo, addingChildRecord } from "../actions/index.js"
-
+import RecordsChart from "./RecordsChart.js"
 
 function ChildView(props) {
   var day = new Date();
@@ -176,6 +176,7 @@ function ChildView(props) {
             <p className="viewallrecords" onClick={() => setViewAll(true)}>View all records</p>
           </div>}
       </div>
+      <RecordsChart />
     </div >
   )
 }

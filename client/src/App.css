@@ -607,3 +607,21 @@ margin-top: 20px;
   margin: 10px auto;
   height: 40px;
 }
+
+
+.chart {
+  margin: 40px auto;
+  width:60%
+
+}
+
+
+@media screen and (max-width: 1400px) {
+  .chart {
+    width:80%
+  }
+
+  .chartjs-render-monitor {
+    margin: 40px 0 40px 0 !important
+  }
+}
