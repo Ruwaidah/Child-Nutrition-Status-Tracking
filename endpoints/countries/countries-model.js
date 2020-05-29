@@ -5,35 +5,32 @@ const isAdmin = (req, res, next) => {
     .select("isAdmin")
     .where({ id: req.params.userid })
     .first()
-    .then(isadmin => {
+    .then((isadmin) => {
       if (isadmin && isadmin.isAdmin == 1) next();
       else {
         res.status(404).json({ meassge: "Dont have access" });
       }
     })
-    .catch(error => res.status(500).json({ message: "error getting data" }));
+    .catch((error) => res.status(500).json({ message: "error getting data" }));
 };
 
 // Country By Name
 function getCountryByName(name) {
-  return db("countries").where({ country_name: name }).first()
+  return db("countries").where({ country_name: name }).first();
 }
-
 
 async function addNewCountry(data) {
-  let id = await db("countries").insert(data, "id")
-  return getCountries()
+  let id1 = await db("countries").insert(data, "id");
+  return getCountries();
 }
-
 
 function getCountries() {
   return db("countries");
 }
 
-
 async function deleteCountry(id) {
-  let id = await db("countries").where({ id }).del()
-  return getCountries()
+  let ids = await db("countries").where({ id }).del();
+  return getCountries();
 }
 
 module.exports = {
@@ -41,6 +38,5 @@ module.exports = {
   getCountries,
   getCountryByName,
   addNewCountry,
-  deleteCountry
-
+  deleteCountry,
 };
