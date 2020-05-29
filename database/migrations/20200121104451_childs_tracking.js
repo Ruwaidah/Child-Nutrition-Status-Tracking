@@ -1,11 +1,11 @@
 exports.up = function (knex) {
-  return knex.schema.createTable("childs_tracking", tbl => {
+  return knex.schema.createTable("childs_tracking", (tbl) => {
     tbl.increments();
     // tbl.string("name", 100).notNullable();
     // tbl.integer("gender", 100).notNullable();
     // tbl.date("birth", 100).notNullable();
-    tbl.integer("weight", 100).notNullable();
-    tbl.integer("height", 100).notNullable();
+    tbl.decimal("weight", 100).notNullable();
+    tbl.decimal("height", 100).notNullable();
     tbl.date("date", 100).notNullable();
     tbl.string("description", 255);
     // tbl.string("parentName", 100).notNullable();
