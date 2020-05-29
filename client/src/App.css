@@ -79,6 +79,10 @@ a {
   margin: 0;
 }
 
+.nav .user-nav {
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+}
 .nav .logout button{
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
@@ -150,8 +154,13 @@ a {
 }
 @media screen and (max-width: 1400px) {
   .container .header{
+    width: 100% !important;
     margin-bottom: 10px;
     background: none;
+  }
+
+  .container .header h3 {
+    width: 100%;
   }
   .error {
     width: 68%;
@@ -606,4 +615,22 @@ margin-top: 20px;
   width: 40%;
   margin: 10px auto;
   height: 40px;
+}
+
+
+.chart {
+  margin: 40px auto;
+  width:60%
+
+}
+
+
+@media screen and (max-width: 1400px) {
+  .chart {
+    width:80%
+  }
+
+  .chartjs-render-monitor {
+    margin: 40px 0 40px 0 !important
+  }
 }

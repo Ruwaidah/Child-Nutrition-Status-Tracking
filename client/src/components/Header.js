@@ -61,9 +61,11 @@ function Header(props) {
               </NavLink>
           </div>
         ) : (
-            <NavLink exact to={`/${sessionStorage.getItem("username")}/user/${props.user.country_name}/${props.user.country_id}`}>
-              {props.user.country_name}
-            </NavLink>
+            <div className="nav-btn">
+              <h3 className="user-nav">
+                {props.user.country_name.toUpperCase()}
+              </h3>
+            </div>
           )
       ) : null}
 
