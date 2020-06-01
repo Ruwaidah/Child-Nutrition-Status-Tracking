@@ -11,10 +11,7 @@ function Menu(props) {
     props.userInfo(sessionStorage.getItem("userId"));
   }, []);
 
-  console.log(props.user)
-
-  if (!props.user || !props.user.country_id) return <p>Loading</p>
-
+  if (!props.user || !props.user.country_id) return <p>Loading</p>;
 
   return (
     <div>
@@ -24,17 +21,21 @@ function Menu(props) {
           <Redirect to={`/${sessionStorage.getItem("username")}/admin`} />
         </div>
       ) : (
-          <Redirect to={`/${sessionStorage.getItem("username")}/user/${props.user.country_name}/${props.user.country_id}`} />
-          // <Communities {...props} />
-        )}
+        <Redirect
+          to={`/${sessionStorage.getItem("username")}/user/${
+            props.user.country_name
+          }/${props.user.country_id}`}
+        />
+        // <Communities {...props} />
+      )}
     </div>
   );
 }
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
   return {
     loading: state.isloading,
-    user: state.user
+    user: state.user,
   };
 };
 

@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { cleaning } from "../actions";
 
 function Header(props) {
-  console.log(props.user)
   const OnLogOut = () => {
     sessionStorage.clear();
     props.cleaning();
@@ -20,26 +19,26 @@ function Header(props) {
       margin: "5%",
       display: "flex",
       flexDirection: "row",
-      justifyContent: "space-between"
+      justifyContent: "space-between",
     },
 
     headline: {
       margin: "2%",
       paddingTop: "2%",
-      fontSize: "3rem"
+      fontSize: "3rem",
     },
 
     subtitle: {
       margin: "2%",
-      fontSize: "1.5rem"
+      fontSize: "1.5rem",
     },
 
     button: {
       margin: "2%",
       width: "30%",
       padding: "2%",
-      alignItem: "center"
-    }
+      alignItem: "center",
+    },
   });
 
   const classes = useStyles();
@@ -55,33 +54,34 @@ function Header(props) {
       {props.user ? (
         props.user.isAdmin == "1" ? (
           <div className="nav-btn">
-            <NavLink to={`/${sessionStorage.getItem("username")}/admin/show-users`}>Users</NavLink>
+            <NavLink
+              to={`/${sessionStorage.getItem("username")}/admin/show-users`}
+            >
+              Users
+            </NavLink>
             <NavLink exact to={`/${sessionStorage.getItem("username")}/admin`}>
               Countries
-              </NavLink>
+            </NavLink>
           </div>
         ) : (
-            <div className="nav-btn">
-              <h3 className="user-nav">
-                {props.user.country_name.toUpperCase()}
-              </h3>
-            </div>
-          )
+          <div className="nav-btn">
+            <h3 className="user-nav">
+              {props.user.country_name.toUpperCase()}
+            </h3>
+          </div>
+        )
       ) : null}
 
       <div className="logout">
-        <button onClick={OnLogOut} >
-          LogOut
-          </button>
+        <button onClick={OnLogOut}>LogOut</button>
       </div>
-
     </div>
   );
 }
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 

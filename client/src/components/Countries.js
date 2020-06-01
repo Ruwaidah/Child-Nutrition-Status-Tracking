@@ -5,7 +5,7 @@ import { allCountries, userInfo, createCountry } from "../actions";
 function Countries(props) {
   useEffect(() => {
     props.allCountries();
-    props.userInfo(sessionStorage.getItem("userId"))
+    props.userInfo(sessionStorage.getItem("userId"));
   }, []);
 
   if (!props.countries) {
@@ -13,7 +13,7 @@ function Countries(props) {
       <div className="loading">
         <h1>Loading...</h1>
       </div>
-    )
+    );
   }
   return (
     <div className="countries">
@@ -21,7 +21,9 @@ function Countries(props) {
         {props.countries.map((country, index) => (
           <div className="country">
             <Link
-              to={`/${sessionStorage.getItem("username")}/admin/${country.country_name}/${country.id}`}
+              to={`/${sessionStorage.getItem("username")}/admin/${
+                country.country_name
+              }/${country.id}`}
               key={index}
             >
               {country.country_name}
@@ -37,14 +39,17 @@ function Countries(props) {
   );
 }
 
-const mapStateToProps = state => {
-  console.log(state.data);
+const mapStateToProps = (state) => {
   return {
     user: state.user,
     username: state.user,
     countries: state.data,
-    loading: state.isloading
+    loading: state.isloading,
   };
 };
 
-export default connect(mapStateToProps, { allCountries, userInfo, createCountry })(Countries);
+export default connect(mapStateToProps, {
+  allCountries,
+  userInfo,
+  createCountry,
+})(Countries);
