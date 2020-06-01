@@ -20,7 +20,7 @@ import {
   RECORD_FETCH,
   RECORD_FAILED,
   ALL_USERS_FETCH,
-  ALL_USERS_FAILED
+  ALL_USERS_FAILED,
 } from "../actions";
 
 const initiallstate = {
@@ -36,22 +36,21 @@ const initiallstate = {
   records: null,
   child: null,
   allusers: null,
-  childTrack: null
+  childTrack: null,
 };
 
 export const rootReducer = (state = initiallstate, actions) => {
-  console.log(actions.type)
   switch (actions.type) {
     // Login Cases
     case LOGIN_LOADING:
       return {
         ...state,
         isloading: true,
-        error: null
+        error: null,
       };
 
     case LOGIN_FETCH:
-      console.log(actions.payload.user)
+      console.log(actions.payload.user);
       sessionStorage.setItem("userId", actions.payload.user.id);
       sessionStorage.setItem("token", actions.payload.token);
       sessionStorage.setItem("username", actions.payload.user.username);
@@ -62,13 +61,13 @@ export const rootReducer = (state = initiallstate, actions) => {
         user: actions.payload.user,
         token: actions.payload.token,
         isloading: false,
-        error: null
+        error: null,
       };
     case LOGIN_FAILED:
       return {
         data: [],
         isloading: false,
-        error: "Invalid UserName or Password!"
+        error: "Invalid UserName or Password!",
       };
 
     // user info fetch
@@ -84,36 +83,34 @@ export const rootReducer = (state = initiallstate, actions) => {
         ...state,
         user: actions.payload.user,
         isloading: false,
-        error: null
+        error: null,
       };
     case USER_INFO_FAILED:
       return {
         data: [],
         isloading: false,
-        error: "error loading user Info"
+        error: "error loading user Info",
       };
 
     // Country Fetch
     case COUNTRY_INFO_LOADING:
-      console.log(actions.payload);
       return {
         ...state,
         communities: null,
-        error: null
+        error: null,
       };
     case COUNTRY_INFO_FETCH:
-      console.log(actions.payload);
       return {
         ...state,
         communities: actions.payload,
         isloading: false,
-        error: null
+        error: null,
       };
     case COUNTRY_INFO_FAILED:
       return {
         data: [],
         isloading: false,
-        error: "NO COMMUNITE FOUND"
+        error: "NO COMMUNITE FOUND",
       };
 
     // // Countries Fetch
@@ -130,13 +127,13 @@ export const rootReducer = (state = initiallstate, actions) => {
         ...state,
         data: actions.payload,
         isloading: false,
-        error: null
+        error: null,
       };
     case COUNTRIES_INFO_FAILED:
       return {
         data: [],
         isloading: false,
-        error: "error loading Info"
+        error: "error loading Info",
       };
 
     // case USERS_INFO_FETCH:
@@ -151,13 +148,12 @@ export const rootReducer = (state = initiallstate, actions) => {
     //     initiallstate
     //   };
 
-
     // Records
     case RECORDS_START:
       return {
         ...state,
         records: null,
-        error: null
+        error: null,
       };
 
     case RECORDS_FETCH:
@@ -165,23 +161,21 @@ export const rootReducer = (state = initiallstate, actions) => {
         ...state,
         records: actions.payload,
         isloading: false,
-        error: null
+        error: null,
       };
     case RECORDS_FAILED:
       return {
         records: null,
         isloading: false,
-        error: "error loading user Info"
+        error: "error loading user Info",
       };
-
-
 
     // CHILD RECORD
     case RECORD_START:
       return {
         ...state,
         isloading: true,
-        error: null
+        error: null,
       };
 
     case RECORD_FETCH:
@@ -190,16 +184,14 @@ export const rootReducer = (state = initiallstate, actions) => {
         child: actions.payload[0],
         childTrack: actions.payload[1],
         isloading: false,
-        error: null
+        error: null,
       };
     case RECORD_FAILED:
       return {
         child: null,
         isloading: false,
-        error: "error loading user Info"
+        error: "error loading user Info",
       };
-
-
 
     // ALL USERS FETCH
     case ALL_USERS_FETCH:
@@ -207,12 +199,12 @@ export const rootReducer = (state = initiallstate, actions) => {
         ...state,
         allusers: actions.payload,
         isloading: false,
-        error: null
+        error: null,
       };
     case ALL_USERS_FAILED:
       return {
         isloading: false,
-        error: "error loading user Info"
+        error: "error loading user Info",
       };
     default:
       return state;

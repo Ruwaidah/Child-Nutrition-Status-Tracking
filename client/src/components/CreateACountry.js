@@ -2,21 +2,20 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { createCountry } from "../actions";
 
-const CreateACountry = props => {
+const CreateACountry = (props) => {
   const [country, setCountry] = useState({
-    country_name: ""
+    country_name: "",
   });
 
-  const onChange = event => {
+  const onChange = (event) => {
     setCountry({ country_name: event.target.value });
   };
-  console.log(country);
-  onsubmit = event => {
+  onsubmit = (event) => {
     event.preventDefault();
     props.createCountry(country);
     props.history.goBack();
     setCountry({
-      country_name: ""
+      country_name: "",
     });
   };
   return (
@@ -30,7 +29,7 @@ const CreateACountry = props => {
         />
         <button>Submit</button>
         <button
-          onClick={event => {
+          onClick={(event) => {
             event.preventDefault();
             props.history.goBack();
           }}
@@ -42,10 +41,10 @@ const CreateACountry = props => {
   );
 };
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
   return {
     username: state.user,
-    userAllInfo: state.userInfo
+    userAllInfo: state.userInfo,
   };
 };
 

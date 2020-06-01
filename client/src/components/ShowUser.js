@@ -3,42 +3,41 @@ import { connect } from "react-redux";
 import { editeUser, deleteUser, userInfo } from "../actions";
 
 function ShowUser(props) {
-  console.log(props.user)
-  const id = props.match.params.id
-  let check = false
+  const id = props.match.params.id;
+  let check = false;
   const [edite, setEdite] = useState(false);
   const [gettheUSer, setUser] = useState(props.user);
-  const [submitted, setSubmit] = useState(false)
+  const [submitted, setSubmit] = useState(false);
 
   useEffect(() => {
-    props.userInfo(id)
-    check = !check
-    setUser(props.user)
+    props.userInfo(id);
+    check = !check;
+    setUser(props.user);
   }, [submitted, edite]);
 
   if (props.user) {
-    check = !check
+    check = !check;
   }
 
   useEffect(() => {
-    setUser(props.user)
-  }, [check, edite])
+    setUser(props.user);
+  }, [check, edite]);
 
-  const onChange = event => {
+  const onChange = (event) => {
     setUser({
       ...gettheUSer,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault();
     props.editeUser(props.user.id, gettheUSer);
     setEdite(false);
-    setSubmit(!submitted)
+    setSubmit(!submitted);
   };
 
-  if (!props.user) return <h3>Loading</h3>
+  if (!props.user) return <h3>Loading</h3>;
   return (
     <div>
       <div className="alllist">
@@ -46,71 +45,86 @@ function ShowUser(props) {
         {/* className="editeForm" */}
         <div className="field">
           <h5>Username: </h5>
-          {edite ? <input
-            id="username"
-            name="username"
-            onChange={onChange}
-            value={gettheUSer.username}
-          /> : <p>{props.user.username}</p>}
-
+          {edite ? (
+            <input
+              id="username"
+              name="username"
+              onChange={onChange}
+              value={gettheUSer.username}
+            />
+          ) : (
+            <p>{props.user.username}</p>
+          )}
         </div>
         <div className="field">
           <h5>First Name: </h5>
-          {edite ? <input
-            id="firstname"
-            name="firstname"
-            onChange={onChange}
-            value={gettheUSer.firstname}
-          /> : <p>{props.user.firstname}</p>}
-
+          {edite ? (
+            <input
+              id="firstname"
+              name="firstname"
+              onChange={onChange}
+              value={gettheUSer.firstname}
+            />
+          ) : (
+            <p>{props.user.firstname}</p>
+          )}
         </div>
 
         <div className="field">
           <h5>Last Name: </h5>
-          {edite ? <input
-            id="lastname"
-            name="lastname"
-            onChange={onChange}
-            value={gettheUSer.lastname}
-          /> : <p>{props.user.lastname}</p>}
-
+          {edite ? (
+            <input
+              id="lastname"
+              name="lastname"
+              onChange={onChange}
+              value={gettheUSer.lastname}
+            />
+          ) : (
+            <p>{props.user.lastname}</p>
+          )}
         </div>
 
         <div className="field">
           <h5>Email: </h5>
-          {edite ? <input
-            id="email"
-            name="email"
-            value={gettheUSer.email}
-            onChange={onChange}
-
-          /> : <p>{props.user.email}</p>}
+          {edite ? (
+            <input
+              id="email"
+              name="email"
+              value={gettheUSer.email}
+              onChange={onChange}
+            />
+          ) : (
+            <p>{props.user.email}</p>
+          )}
         </div>
 
         <div className="field">
           <h5>Country: </h5>
-          {edite ? <input
-            id="country"
-            name="country_name"
-            value={gettheUSer.country_name}
-            onChange={onChange}
-
-          /> : <p>{props.user.country_name}</p>}
-
+          {edite ? (
+            <input
+              id="country"
+              name="country_name"
+              value={gettheUSer.country_name}
+              onChange={onChange}
+            />
+          ) : (
+            <p>{props.user.country_name}</p>
+          )}
         </div>
 
-        {edite ? <div className="field">
-          {gettheUSer.isAdmin === 1 ? (
-            <>
-              <h5>User Type: </h5>
-              <select name="isAdmin" onChange={onChange}>
-                <option value="1" selected={true}>
-                  Globel Admin
+        {edite ? (
+          <div className="field">
+            {gettheUSer.isAdmin === 1 ? (
+              <>
+                <h5>User Type: </h5>
+                <select name="isAdmin" onChange={onChange}>
+                  <option value="1" selected={true}>
+                    Globel Admin
                   </option>
-                <option value="0">Country Admin</option>
-              </select>
-            </>
-          ) : (
+                  <option value="0">Country Admin</option>
+                </select>
+              </>
+            ) : (
               <>
                 <h5>User Type: </h5>
                 <select name="isAdmin" onChange={onChange}>
@@ -121,33 +135,52 @@ function ShowUser(props) {
                 </select>
               </>
             )}
-        </div> :
+          </div>
+        ) : (
           <div className="field">
             <h5>User Type: </h5>
             {props.user.isAdmin === 1 ? (
               <p> Globel Admin </p>
             ) : (
-                <p> Country Admin </p>
-              )}
+              <p> Country Admin </p>
+            )}
           </div>
-        }
-        {edite ? <> <button type="submit" onClick={(e) => onSubmit(e)}>Edite</button>
-          <button onClick={() => setEdite(false)}>Cancel</button></> :
+        )}
+        {edite ? (
           <>
-            <button onClick={() => { props.deleteUser(gettheUSer.id); props.history.push(`/${sessionStorage.getItem("username")}/admin/show-users`) }}>Delete</button>
+            {" "}
+            <button type="submit" onClick={(e) => onSubmit(e)}>
+              Edite
+            </button>
+            <button onClick={() => setEdite(false)}>Cancel</button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={() => {
+                props.deleteUser(gettheUSer.id);
+                props.history.push(
+                  `/${sessionStorage.getItem("username")}/admin/show-users`
+                );
+              }}
+            >
+              Delete
+            </button>
             <button onClick={() => setEdite(true)}>Edite</button>
           </>
-        }
+        )}
         {/* </form> */}
       </div>
       )}
     </div>
   );
 }
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
   return {
     user: state.user,
     allusers: state.allusers,
   };
 };
-export default connect(mapStatetoProps, { editeUser, deleteUser, userInfo })(ShowUser);
+export default connect(mapStatetoProps, { editeUser, deleteUser, userInfo })(
+  ShowUser
+);
