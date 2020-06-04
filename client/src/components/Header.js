@@ -17,7 +17,7 @@ function Header(props) {
         <h3>International Child Nutrition Status Tracker</h3>
       </div>
       {props.user ? (
-        props.user.isAdmin == "1" ? (
+        sessionStorage.getItem("isAdmin") == "1" ? (
           <div className="nav-btn">
             <NavLink
               to={`/${sessionStorage.getItem("username")}/admin/show-users`}

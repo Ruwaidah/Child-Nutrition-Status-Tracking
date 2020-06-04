@@ -331,7 +331,8 @@ a {
   padding: 50px;
   color: white;
 }
-.alllist {
+.alllist,
+.edite-compo form {
   margin: 60px auto;
   display: flex;
   flex-direction: column;
@@ -361,7 +362,8 @@ a {
   color: black;
 }
 
-.field h5 {
+.field h5,
+.edite-compo form label {
   text-align: end;
   font-size: 20px;
   /* width: 25%; */
@@ -373,19 +375,22 @@ a {
   background: #282c34;
 }
 
-.alllist .field {
+.alllist .field,
+.edite-compo form .field {
   justify-content: start;
   margin-bottom: 20px;
   height: 40px;
 }
 
-.alllist .field input {
+.alllist .field input,
+.edite-compo form input {
   padding: 6px 0 10px 6px;
   font-size: 18px;
   border: 1px solid black;
 }
 
-.alllist .field h5 {
+.alllist .field h5,
+.edite-compo form label {
   width: 160px;
   text-align: start;
   margin: 0;
@@ -395,23 +400,28 @@ a {
   font-size: 22px;
 }
 
-.alllist .field select {
+.alllist .field select,
+.edite-compo form .field select {
   font-size: 18px;
+  padding: 10px;
 }
 
-.alllist .del-edite {
+.alllist .del-edite,
+.edite-compo form .sub-cancel {
   display: flex;
   justify-content: start;
   width: 100%;
 }
-.alllist .del-edite button {
+.alllist .del-edite button,
+.edite-compo form .sub-cancel button {
   outline: none;
   font-size: 18px;
   border: 1px solid black;
   padding: 10px 20px;
   border-radius: 2px;
 }
-.alllist .del-edite button:last-child {
+.alllist .del-edite button:last-child,
+.edite-compo form .sub-cancel button:last-child {
   margin-left: 60px;
 }
 /* Create User */
@@ -434,25 +444,38 @@ a {
 }
 
 .editeForm {
+  font-family: "Roboto", sans-serif;
   display: flex;
   width: 100%;
   flex-direction: column;
   justify-content: start;
-  align-items: center;
   background: rgba(34, 34, 34, 0.96);
   position: fixed;
   top: 150px;
-  left: 30%;
+  left: 26%;
   z-index: 1;
   animation: fadeIn 1s;
-  width: 40%;
+  width: 50%;
   border-radius: 10px;
-  padding: 30px 0;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  /* align-items: center; */
-  border: black 1px solid;
+  padding: 30px 20px;
+}
+
+.editeForm div {
+  background: rgba(34, 34, 34, 0.96);
+  margin: 0 auto;
+}
+
+.editeForm div:last-child {
+  display: flex;
+}
+
+.editeForm div:last-child button {
+  font-size: 20px;
+  padding: 6px 20px;
+  border: none;
+}
+.editeForm div:last-child button:last-child {
+  margin-left: 40px;
 }
 
 .editeForm input,
@@ -463,15 +486,19 @@ a {
 .editeForm label {
   font-size: 25px;
   width: 20%;
-  color: wheat;
+  color: whitesmoke;
   text-align: end;
   margin-right: 10px;
+  background: none;
 }
 
 .editeForm input {
   font-size: 1.5rem;
-  width: 60%;
+  width: 50%;
   margin-bottom: 20px;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 10px;
 }
 
 /* Countries */
@@ -569,7 +596,7 @@ a {
 
 .newChild {
   font-family: "Roboto", sans-serif;
-  width: 40%;
+  width: 60%;
   margin: 60px auto;
 }
 

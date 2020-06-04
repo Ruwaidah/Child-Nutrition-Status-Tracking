@@ -23,22 +23,26 @@ function CreateACommunity(props) {
   return (
     <div>
       <form className="editeForm">
-        <label htmlFor="community_name">Community name:</label>
-        <input
-          id="community_name"
-          placeholder="country name"
-          name="community_name"
-          onChange={onChange}
-        />
-        <button>Submit</button>
-        <button
-          onClick={(event) => {
-            event.preventDefault();
-            props.history.goBack();
-          }}
-        >
-          Cancel
-        </button>
+        <div>
+          <label htmlFor="community_name">Community name:</label>
+          <input
+            id="community_name"
+            placeholder="country name"
+            name="community_name"
+            onChange={onChange}
+          />
+        </div>
+        <div>
+          <button>Submit</button>
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              props.history.goBack();
+            }}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
