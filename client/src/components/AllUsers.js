@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { getAllUsers, userInfo } from "../actions";
 import ShowUser from "./ShowUser";
 
 function AllUsers(props) {
+  console.log(sessionStorage.getItem("userId"));
   useEffect(() => {
     props.getAllUsers();
   }, []);
@@ -13,13 +14,20 @@ function AllUsers(props) {
   return (
     <div className="list-div">
       <div className="createUser">
-        <Link to="show-users/create/user">
-          Create User
-        </Link>
+        <Link to="show-users/create/user">Create User</Link>
       </div>
       <div className="usersList">
-        {props.allusers.map((user, index) =>
-          <Link onClick={() => props.userInfo(user.id)} key={index} to={`users-show/${user.username}/${user.id}`}>{user.username}</Link>
+        {props.allusers.map(
+          (user, index) => (
+            <Link
+              className="user-card"
+              onClick={() => props.userInfo(user.id)}
+              key={index}
+              to={`users-show/${user.username}/${user.id}`}
+            >
+              {user.username}
+            </Link>
+          )
           // <ShowUser key={index} showuser={user} history={props.history} />
         )}
       </div>
@@ -27,7 +35,7 @@ function AllUsers(props) {
   );
 }
 
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
   return {
     user: state.user,
     allusers: state.allusers,
