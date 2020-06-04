@@ -41,8 +41,6 @@ function ShowUser(props) {
   return (
     <div>
       <div className="alllist">
-        {/* <form onSubmit={onSubmit} > */}
-        {/* className="editeForm" */}
         <div className="field">
           <h5>Username: </h5>
           {edite ? (
@@ -148,28 +146,31 @@ function ShowUser(props) {
         )}
         {edite ? (
           <>
-            {" "}
-            <button type="submit" onClick={(e) => onSubmit(e)}>
-              Edite
-            </button>
-            <button onClick={() => setEdite(false)}>Cancel</button>
+            <div className="del-edite">
+              {" "}
+              <button type="submit" onClick={(e) => onSubmit(e)}>
+                Edite
+              </button>
+              <button onClick={() => setEdite(false)}>Cancel</button>
+            </div>
           </>
         ) : (
           <>
-            <button
-              onClick={() => {
-                props.deleteUser(gettheUSer.id);
-                props.history.push(
-                  `/${sessionStorage.getItem("username")}/admin/show-users`
-                );
-              }}
-            >
-              Delete
-            </button>
-            <button onClick={() => setEdite(true)}>Edite</button>
+            <div className="del-edite">
+              <button
+                onClick={() => {
+                  props.deleteUser(gettheUSer.id);
+                  props.history.push(
+                    `${sessionStorage.getItem("username")}/admin/show-users`
+                  );
+                }}
+              >
+                Delete
+              </button>
+              <button onClick={() => setEdite(true)}>Edite</button>
+            </div>
           </>
         )}
-        {/* </form> */}
       </div>
       )}
     </div>

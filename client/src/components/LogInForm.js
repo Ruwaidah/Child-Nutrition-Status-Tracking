@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 function LogInForm(props) {
   const [values, setValues] = useState({
     username: "",
-    password: ""
+    password: "",
   });
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
@@ -16,29 +16,27 @@ function LogInForm(props) {
     }
   }, []);
 
-  const onchange = event => {
+  const onchange = (event) => {
     setValues({
       ...values,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
 
-  const onLogin = event => {
+  const onLogin = (event) => {
     event.preventDefault();
     props.logInaction(values, props.history);
     // history.push("/test");
   };
 
-
   const useStyles = makeStyles({
     root: {
+      fontFamily: "Roboto",
       width: "100%",
-      overflowX: "auto",
       margin: "5%",
       display: "flex",
-      flexDirection: "row",
       justifyContent: "space-between",
-      background: "none"
+      background: "none",
     },
 
     headline: {
@@ -46,7 +44,7 @@ function LogInForm(props) {
       paddingTop: "2%",
       fontSize: "3rem",
       color: "white",
-      background: "none"
+      background: "none",
     },
 
     subtitle: {
@@ -54,9 +52,8 @@ function LogInForm(props) {
       fontSize: "1.8rem",
       color: "white",
       width: "100%",
-      background: "none"
-    }
-
+      background: "none",
+    },
   });
   const classes = useStyles();
   return (
@@ -65,10 +62,12 @@ function LogInForm(props) {
         <Redirect to={`/${sessionStorage.getItem("username")}`} />
       ) : null}{" "}
       <>
-        <div className={`${classes.root} header`} >
+        <div className={`${classes.root} header`}>
           <div>
             <h1 className={classes.headline}>MALO </h1>
-            <h3 className={classes.subtitle}>International Child Nutrition Status Tracker</h3>
+            <h3 className={classes.subtitle}>
+              International Child Nutrition Status Tracker
+            </h3>
           </div>
         </div>
         <div className="loginDiv">
@@ -104,13 +103,12 @@ function LogInForm(props) {
         </div>
       </>
     </div>
-
   );
 }
-const mapStatetoProps = state => {
+const mapStatetoProps = (state) => {
   return {
     user: state.user,
-    error: state.error
+    error: state.error,
   };
 };
 export default connect(mapStatetoProps, { logInaction, userInfo })(LogInForm);

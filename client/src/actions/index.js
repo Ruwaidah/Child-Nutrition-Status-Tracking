@@ -104,8 +104,6 @@ export const userInfo = (id) => (dispatch) => {
   authAxios
     .get(`https://malo01.herokuapp.com/api/auth/users/${id}`)
     .then((respo) => {
-      sessionStorage.setItem("username", respo.data.user.username);
-      sessionStorage.setItem("userid", respo.data.user.id);
       dispatch({ type: USER_INFO_FETCH, payload: respo.data });
     })
     .catch((respon) => dispatch({ type: USER_INFO_FAILED }));
