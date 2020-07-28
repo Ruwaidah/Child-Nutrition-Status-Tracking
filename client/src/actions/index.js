@@ -152,9 +152,10 @@ export const RECORDS_START = "RECORDS_START";
 export const RECORDS_FETCH = "RECORDS_FETCH";
 export const RECORDS_FAILED = "RECORDS_FAILED";
 export const getRecords = (id) => (dispatch) => {
+  console.log("dwdwds", sessionStorage.getItem("userId"));
   dispatch({ type: RECORDS_START });
   const authAxios = axiosWithAuth();
-  let user_id = sessionStorage.getItem("userid");
+  let user_id = sessionStorage.getItem("userId");
   authAxios
     .get(`https://malo01.herokuapp.com/api/auth/childrens/${user_id}/${id}`)
     .then((respo) => {
@@ -170,7 +171,7 @@ export const RECORD_FAILED = "RECORD_FAILED";
 export const getChildRecord = (communityid, childid) => (dispatch) => {
   // dispatch({ type: RECORDS_START });
   const authAxios = axiosWithAuth();
-  let user_id = sessionStorage.getItem("userid");
+  let user_id = sessionStorage.getItem("userId");
   authAxios
     .get(
       `https://malo01.herokuapp.com/api/auth/childrens/${user_id}/${communityid}/${childid}`

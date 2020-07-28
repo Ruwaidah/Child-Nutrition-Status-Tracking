@@ -56,6 +56,7 @@ export const rootReducer = (state = initiallstate, actions) => {
       sessionStorage.setItem("username", actions.payload.user.username);
       sessionStorage.setItem("isAdmin", actions.payload.user.isAdmin);
       sessionStorage.setItem("countryId", actions.payload.user.country_id);
+      console.log(sessionStorage.getItem("userId"));
       return {
         ...state,
         user: actions.payload.user,

@@ -5,6 +5,7 @@ const Users = require("../users/users-model.js");
 const childs = require("./childrens-model.js");
 
 router.get("/:userid/:communityid", checkIfAdmin, (req, res) => {
+  console.log(req);
   childs
     .childsOfcomunity(req.params.communityid)
     .then((allchilds) => res.status(200).json(allchilds))
