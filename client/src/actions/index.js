@@ -1,5 +1,4 @@
-import axios from "axios";
-import { axiosWithAuth } from "../components/axiosWithAuth";
+import axiosWithAuth from "../utils/axiosWithAuth";
 export const LOGIN_LOADING = "LOGIN_LOADING";
 export const LOGIN_FETCH = "LOGIN_FETCH";
 export const LOGIN_FAILED = "LOGIN_FAILED";
@@ -17,10 +16,9 @@ export const COUNTRIES_INFO_FETCH = "COUNTRIES_INFO_FETCH";
 export const COUNTRIES_INFO_FAILED = "COUNTRIES_INFO_FAILED";
 export const allCountries = () => (dispatch) => {
   dispatch({ type: COUNTRIES_LOADING });
-  const authAxios = axiosWithAuth();
-  authAxios
+  axiosWithAuth()
     .get(
-      `https://malo01.herokuapp.com/api/auth/countries/${sessionStorage.getItem(
+      `/countries/${sessionStorage.getItem(
         "userId"
       )}`
     )
@@ -39,11 +37,10 @@ export const COUNTRY_INFO_FAILED = "COUNTRY_INFO_FAILED";
 
 export const countryFetch = (countryid) => (dispatch) => {
   dispatch({ type: COUNTRY_INFO_LOADING });
-  const authAxios = axiosWithAuth();
   const user_id = sessionStorage.getItem("userId");
-  authAxios
+  axiosWithAuth()
     .get(
-      `https://malo01.herokuapp.com/api/auth/communities/${user_id}/${countryid}`
+      `/communities/${user_id}/${countryid}`
     )
     .then((respo) =>
       dispatch({ type: COUNTRY_INFO_FETCH, payload: respo.data })
@@ -53,9 +50,8 @@ export const countryFetch = (countryid) => (dispatch) => {
 
 // Create Community
 export const createCommunity = (values) => (dispatch) => {
-  const authAxios = axiosWithAuth();
-  authAxios
-    .post(`https://malo01.herokuapp.com/api/auth/communities`, values)
+  axiosWithAuth()
+    .post(`/communities`, values)
     .then((respo) =>
       dispatch({ type: COUNTRY_INFO_FETCH, payload: respo.data })
     );
@@ -64,9 +60,8 @@ export const createCommunity = (values) => (dispatch) => {
 // Create Country
 export const createCountry = (values) => (dispatch) => {
   const userId = sessionStorage.getItem("userId");
-  const authAxios = axiosWithAuth();
-  authAxios
-    .post(`https://malo01.herokuapp.com/api/auth/countries/${userId}`, values)
+  axiosWithAuth()
+    .post(`/countries/${userId}`, values)
     .then((respo) =>
       dispatch({ type: COUNTRIES_INFO_FETCH, payload: respo.data })
     );
@@ -76,8 +71,8 @@ export const createCountry = (values) => (dispatch) => {
 // Login Token
 export const logInaction = (values, history) => (dispatch) => {
   dispatch({ type: LOGIN_LOADING });
-  axios
-    .post("https://malo01.herokuapp.com/api/auth/login", values)
+  axiosWithAuth()
+    .post("/login", values)
     .then((res) => dispatch({ type: LOGIN_FETCH, payload: res.data }))
     .catch((error) => dispatch({ type: LOGIN_FAILED }));
 };
@@ -87,8 +82,8 @@ export const logInaction = (values, history) => (dispatch) => {
 export const USERS_INFO_FETCH = "USERS_INFO_FETCH";
 // export const USERS_INFO_FAILED = "USERS_INFO_FAILED";
 export const createUser = (newuser, history) => (dispatch) => {
-  axios
-    .post("https://malo01.herokuapp.com/api/auth/register", newuser)
+  axiosWithAuth()
+    .post("/register", newuser)
     .then((respo) => {
       dispatch({ type: USERS_INFO_FETCH, payload: respo.data });
     })
@@ -100,9 +95,8 @@ export const USER_INFO_LOADING = "USER_INFO_LOADING";
 export const USER_INFO_FETCH = "USER_INFO_FETCH";
 export const USER_INFO_FAILED = "USER_INFO_FAILED";
 export const userInfo = (id) => (dispatch) => {
-  const authAxios = axiosWithAuth();
-  authAxios
-    .get(`https://malo01.herokuapp.com/api/auth/users/${id}`)
+  axiosWithAuth()
+    .get(`/users/${id}`)
     .then((respo) => {
       dispatch({ type: USER_INFO_FETCH, payload: respo.data });
     })
@@ -111,9 +105,8 @@ export const userInfo = (id) => (dispatch) => {
 
 // Edite User
 export const editeUser = (id, value) => (dispatch) => {
-  const authAxios = axiosWithAuth();
-  authAxios
-    .put(`https://malo01.herokuapp.com/api/auth/users/${id}`, value)
+  axiosWithAuth()
+    .put(`/users/${id}`, value)
     .then((respo) => {
       // dispatch({ type: USERS_INFO_FETCH, payload: respo.data })
     })
@@ -124,9 +117,8 @@ export const ALL_USERS_FETCH = "ALL_USERS_FETCH";
 export const ALL_USERS_FAILED = "ALL_USERS_FAILED";
 // Delete a User
 export const deleteUser = (id) => (dispatch) => {
-  const authAxios = axiosWithAuth();
-  authAxios
-    .delete(`https://malo01.herokuapp.com/api/auth/users/${id}`)
+  axiosWithAuth()
+    .delete(`/users/${id}`)
     .then((respo) => dispatch({ type: ALL_USERS_FETCH }))
     .catch((respon) => dispatch({ type: ALL_USERS_FAILED }));
 };
@@ -137,9 +129,8 @@ export const cleaning = () => (dispatch) => {
 // GET ALL USERS
 
 export const getAllUsers = () => (dispatch) => {
-  const authAxios = axiosWithAuth();
-  authAxios
-    .get(`https://malo01.herokuapp.com/api/auth/users`)
+  axiosWithAuth()
+    .get(`/users`)
     .then((respo) => {
       dispatch({ type: ALL_USERS_FETCH, payload: respo.data });
     })
@@ -154,10 +145,9 @@ export const RECORDS_FAILED = "RECORDS_FAILED";
 export const getRecords = (id) => (dispatch) => {
   console.log("dwdwds", sessionStorage.getItem("userId"));
   dispatch({ type: RECORDS_START });
-  const authAxios = axiosWithAuth();
   let user_id = sessionStorage.getItem("userId");
-  authAxios
-    .get(`https://malo01.herokuapp.com/api/auth/childrens/${user_id}/${id}`)
+  axiosWithAuth()
+    .get(`/childrens/${user_id}/${id}`)
     .then((respo) => {
       dispatch({ type: RECORDS_FETCH, payload: respo.data });
     })
@@ -170,11 +160,10 @@ export const RECORD_FETCH = "RECORD_FETCH";
 export const RECORD_FAILED = "RECORD_FAILED";
 export const getChildRecord = (communityid, childid) => (dispatch) => {
   // dispatch({ type: RECORDS_START });
-  const authAxios = axiosWithAuth();
   let user_id = sessionStorage.getItem("userId");
-  authAxios
+  axiosWithAuth()
     .get(
-      `https://malo01.herokuapp.com/api/auth/childrens/${user_id}/${communityid}/${childid}`
+      `/childrens/${user_id}/${communityid}/${childid}`
     )
     .then((respo) => {
       dispatch({ type: RECORD_FETCH, payload: respo.data });
@@ -184,10 +173,9 @@ export const getChildRecord = (communityid, childid) => (dispatch) => {
 
 export const addingChildRecord = (data, childid) => (dispatch) => {
   // dispatch({ type: RECORDS_START });
-  const authAxios = axiosWithAuth();
-  authAxios
+  axiosWithAuth()
     .post(
-      `https://malo01.herokuapp.com/api/auth/childrens//adding/record/${childid}`,
+      `/childrens//adding/record/${childid}`,
       data
     )
     .then((respo) => {
@@ -202,10 +190,9 @@ export const ADDING_FETCH = "ADDING_FETCH";
 export const ADDING_FAILED = "ADDING_FAILED";
 
 export const addingChild = (data, communityid) => (dispatch) => {
-  const authAxios = axiosWithAuth();
-  authAxios
+  axiosWithAuth()
     .post(
-      `https://malo01.herokuapp.com/api/auth/childrens/${communityid}`,
+      `/childrens/${communityid}`,
       data
     )
     .then((respo) => {

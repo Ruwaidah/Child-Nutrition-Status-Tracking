@@ -24,7 +24,7 @@ function ChildView(props) {
     child_id: childId,
     date: day,
   });
-
+console.log(props.childTrack)
   const [isOpen, setIsOpen] = useState(false);
   const [viewAll, setViewAll] = useState(false);
 
@@ -142,7 +142,7 @@ function ChildView(props) {
         </div>
       )}
 
-      <div className="childTrack">
+   {props.childTrack.length>0 && <div className="childTrack">
         {viewAll ? (
           props.childTrack.map((data, index) => (
             <div className="record-container">
@@ -196,7 +196,7 @@ function ChildView(props) {
             </p>
           </div>
         )}
-      </div>
+      </div> }   
       <RecordsChart />
     </div>
   );

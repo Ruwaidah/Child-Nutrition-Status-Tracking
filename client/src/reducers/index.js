@@ -180,6 +180,7 @@ export const rootReducer = (state = initiallstate, actions) => {
       };
 
     case RECORD_FETCH:
+      console.log(actions.payload)
       return {
         ...state,
         child: actions.payload[0],
